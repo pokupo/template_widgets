@@ -110,8 +110,9 @@ article.page-content .b-review__answer:before {
 }
 
 .b-tech__char {
-	float: left;
-	width: 60%;
+	display: table-cell;
+	float: none;
+	width: 100%;
 }
 
 .b-tech__char span {
@@ -130,7 +131,7 @@ article.page-content .b-review__answer:before {
 	color: #666;
 	margin: 0 0 0 60%;
 	padding: 0 8px;
-	display: block;
+	display: table-cell;
 }
 
 .b-recommended {
@@ -213,6 +214,7 @@ article.page-content .b-review__answer:before {
 	cursor: default;
 	font-size: 13px;
 	line-height: 18px;
+	padding-right: 5px;
 }
 
 .b-order-table tbody tr td:first-child {
@@ -331,6 +333,8 @@ article.page-content .b-review__answer:before {
 .b-wizard__holder .b-tech__item,
 section.profile .b-tech__item {
 	margin-bottom: 27px;
+	display: table;
+	width: 100%;
 }
 
 .b-wizard__holder .b-tech__char,
@@ -562,6 +566,14 @@ section.advanced-search label.separator {
 
 .radio-circles .menu__item.active a:active:after {
 	display: none;
+}
+
+.radio-circles .menu__item a{
+	line-height: 32px;
+}
+
+.radio-circles .menu__item a:hover {
+	line-height: 30px;
 }
 
 .radio-circles .menu__item .icon {
@@ -1073,6 +1085,7 @@ section.profile-nav {
 .profile .input-holder {
 	margin: 0 0 20px;
 	max-width: 100%;
+	text-align: left;
 }
 
 .profile .input-holder input {

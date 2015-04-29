@@ -1,4 +1,3 @@
-
 <script id="userInformationTmpl" type="text/html">
   <!-- version 1.0 -->
   <div class="logged-in">
@@ -8,9 +7,9 @@
           <p data-bind="text: login" class="b-profile-menu__name"></p>
           <ul class="menu">
 			<!-- ko if: showProfile -->
-            <li class="menu__item"><a href="/shop#/profile/">Профиль</a></li>
-            <li class="menu__item"><a href="/shop#/purchases/block=list">Заказы</a></li>
-            <li class="menu__item"><a href="/shop#/messages/">Сообщения<!-- ko if: countNewMessage() > 0 --><sup data-bind="text: countNewMessage" class="menu__item__num"></sup><!-- /ko --></a></li>
+            <li class="menu__item"><a href="javascript:void(0);" data-bind="click: ClickProfile">Профиль</a></li>
+            <li class="menu__item"><a href="javascript:void(0);" data-bind="click: ClickPurchases">Заказы</a></li>
+            <li class="menu__item"><a href="javascript:void(0);" data-bind="click: ClickMessages">Сообщения<!-- ko if: countNewMessage() > 0 --><sup data-bind="text: countNewMessage" class="menu__item__num"></sup><!-- /ko --></a></li>
             <!-- /ko -->
 			<li class="menu__item"><a id="js-logout" href="javascript:void(0);" data-bind="click: ClickLogout" class="b-profile-menu__logout">Выйти</a></li>
           </ul>

@@ -459,7 +459,7 @@ body.modal-open {
 
 h1 {
 	font-weight: 300;
-	font-size: 20px;
+	font-size: 45px;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -580,6 +580,7 @@ hgroup+h3 {
 .b-thermometer p {
 	margin-bottom: 15px;
 	margin-left: 3px;
+	white-space: normal;
 }
 
 .b-thermometer a {
@@ -1201,6 +1202,7 @@ ul.with-bullets li {
 	margin: 0 auto 20px;
 	padding: 0 0 20px;
 	max-width: 450px;
+	text-align: center;
 }
 
 .input-holder input[type="checkbox"] + label,
@@ -1367,18 +1369,29 @@ textarea--small {
 
 .error__message {
 	float: right;
+	position: relative;
+	z-index: 2;
+	white-space: normal;
+	height: auto;
+	margin-top: -20px;
 }
-
+.error__message_first {
+	margin-top: 0;
+}
 .error__message p {
 	text-align: right;
 	font-size: 12px;
 	color: #ed1c24;
 	font-weight: 600;
 	max-width: 300px;
+	height: auto;
+	white-space: normal;
+	margin-bottom: 10px;
 }
 
 .error__message.error__message--big p {
 	white-space: normal;
+	height: auto;
 }
 
 select {
@@ -2587,6 +2600,7 @@ section.header {
 	line-height: 30px;
 	height: 30px;
 	vertical-align: top;
+	font-weight: normal;
 }
 
 #search_block {
@@ -2600,23 +2614,32 @@ section.subheader {
 	position: relative;
 	z-index: 2;
 }
+.subheader__cell {
+	display: table-cell;
+	vertical-align: middle;
+}
 
 section.subheader .logo {
-	display: inline-block;
-	height: 100px;
-	line-height: 100px;
-	margin-left: 30px;
-	float: left;
-	text-decoration: none;
+	padding-top: 25px;
+	line-height: 24px;
+ 	margin-left: 30px;
+	max-width: 700px;
+	text-align: left;
+ 	float: left;
+ 	height: auto;
+ 	text-decoration: none;
 }
 
 section.subheader .logo .logo__title {
-	line-height: 100px;
-	vertical-align: middle;
-	font-size: 24px;
-	color: #fff;
-	text-transform: uppercase;
-	white-space: nowrap;
+	line-height: 24px;
+ 	vertical-align: middle;
+ 	font-size: 24px;
+ 	color: #fff;
+ 	text-transform: uppercase;
+	float: left;
+	width: 550px;
+	padding-top: 0;
+	white-space: normal;
 }
 
 section.subheader .logo .logo__title br {
@@ -2627,10 +2650,11 @@ section.subheader .logo img {
 	display: inline-block;
 	line-height: 100px;
 	vertical-align: middle;
-	margin-top: -10px;
+	margin-top: 0;
 	margin-right: 10px;
 	height: 65px;
 	width: auto;
+	float: left;
 }
 
 section.subheader .circles-menu {
@@ -2661,6 +2685,7 @@ section.subheader .menu-login .not-logged-in a.menu-login__login:hover {
 
 section.subheader.subheader--min {
 	background: #fff;
+	z-index: 10;
 }
 
 section.subheader.subheader--min .logo__title {
@@ -7492,8 +7517,9 @@ article.page-content .b-review__answer:before {
 }
 
 .b-tech__char {
-	float: left;
-	width: 60%;
+	display: table-cell;
+	float: none;
+	width: 100%;
 }
 
 .b-tech__char span {
@@ -7512,7 +7538,7 @@ article.page-content .b-review__answer:before {
 	color: #666;
 	margin: 0 0 0 60%;
 	padding: 0 8px;
-	display: block;
+	display: table-cell;
 }
 
 .b-recommended {
@@ -7595,6 +7621,7 @@ article.page-content .b-review__answer:before {
 	cursor: default;
 	font-size: 13px;
 	line-height: 18px;
+	padding-right: 5px;
 }
 
 .b-order-table tbody tr td:first-child {
@@ -7713,6 +7740,8 @@ article.page-content .b-review__answer:before {
 .b-wizard__holder .b-tech__item,
 section.profile .b-tech__item {
 	margin-bottom: 27px;
+	display: table;
+	width: 100%;
 }
 
 .b-wizard__holder .b-tech__char,
@@ -7944,6 +7973,14 @@ section.advanced-search label.separator {
 
 .radio-circles .menu__item.active a:active:after {
 	display: none;
+}
+
+.radio-circles .menu__item-arrow a {
+	line-height: 32px;
+}
+
+.radio-circles .menu__item-arrow a:hover {
+	line-height: 30px;
 }
 
 .radio-circles .menu__item .icon {
@@ -9640,6 +9677,7 @@ span.fancytree-node.fancytree-error span.fancytree-title {
 	left: 660px;
 	display: table;
 	min-height: 120px;
+	height: 120px;
 }
 
 .b-catalog__items.titles .b-item__price > .b-price {
@@ -10004,12 +10042,12 @@ section.advanced-search + .catalog-banner {
 	position: relative;
 	top: -34px;
 	margin: 0 190px -30px 0;
-	white-space: nowrap;
 }
 
 .b-thermometer p {
 	margin-bottom: 15px;
 	margin-left: 3px;
+	white-space: normal;
 }
 
 .b-thermometer a {
@@ -10153,6 +10191,10 @@ section.advanced-search + .catalog-banner {
 	left: -45px;
 }
 
+.b-cart-menu p{
+	font-weight: normal;
+}
+
 .b-cart-menu__patch {
 	position: absolute;
 	display: block;
@@ -10183,6 +10225,7 @@ section.advanced-search + .catalog-banner {
 	margin-bottom: 0;
 	font-size: 16px;
 	color: #000;
+	font-weight: 500;
 }
 
 .b-cart-menu__amount {
@@ -10322,6 +10365,7 @@ section.profile .b-order-list__tobepaid .b-order-item__discount {
 .b-order-item__name span {
 	line-height: 20px;
 	color: #177a93;
+	font-weight: normal;
 }
 
 .b-order-item__price {
