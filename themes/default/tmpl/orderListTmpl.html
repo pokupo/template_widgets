@@ -148,8 +148,11 @@
 <script id="orderDetailTmpl" type="text/html">
   <!-- version 1.1 -->
   <div class="profile">
-    <div class="container"><a href="javascript:void(0);" data-bind="click: Back" class="btn btn-sm btn-thin btn__stepback"><i class="icon icon-back"></i>назад к списку заказов</a>
-      <h2 class="b-profile__headline">Заказ №
+    <div class="container">
+        <!-- ko if: showBackList -->
+        <a href="javascript:void(0);" data-bind="click: Back" class="btn btn-sm btn-thin btn__stepback"><i class="icon icon-back"></i>назад к списку заказов</a>
+        <!-- /ko -->
+        <h2 class="b-profile__headline">Заказ №
         <!-- ko text: id -->
         <!-- /ko --> от
         <!-- ko text: dateCreate -->
@@ -331,9 +334,9 @@
         <tbody>
           <tr class="b-order-table__item">
             <td class="b-order-table__logo"><img src="" data-bind="attr: {src: logoPayment()}"/></td>
-            <td><b data-bind="text: namePayment"></b><br/>
-              <!-- ko text: descPayment -->
-              <!-- /ko -->
+            <td>
+                <b data-bind="text: namePayment"></b>
+                <p data-bind="html: descPayment"></p>
             </td>
             <td data-bind="text: timePayment"></td>
             <td><span class="b-price"><span data-bind="text: costPayment" class="b-price__number"></span><span class="b-price__thinsp">&nbsp;</span><span class="b-price__rubl">Р</span></span></td>
