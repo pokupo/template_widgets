@@ -17,7 +17,7 @@
         <div class="content">
           <div class="b-catalog-item__seller-info slidedown"><span id="user_information_slidedown" data-target="info" class="slidedown__trigger">Информация о продавце</span>
             <div data-target="info" class="slidedown__content hidden">
-              <div data-bind="embedWidget :{ widget : 'InfoSellerWidget-1.0', params : {data : sellerInfo, tmpl : {path: 'http://promodev.pokupo.ru/themes/default/tmpl/infoSellerTmpl.html'}}}" class="b-profile-info"></div>
+              <div data-bind="embedWidget :{ widget : 'InfoSellerWidget-1.0', params : {data : sellerInfo}}" class="b-profile-info"></div>
             </div>
           </div>
           <div class="columns triple columns--resp_fix">
@@ -56,12 +56,19 @@
                       <input type="text" value="1" maxlength="3" autocomplete="off" data-bind="value: blocks.main.ordered" class="inline-input b-increment-input__input"/></span><span data-bind="click: blocks.main.ClickPlus" class="b-increment-input__uarr"></span></div><!-- /ko -->
                 </div><!-- ko if: blocks.main.showAddToCart -->
                 <button id="btn_to_cart" type="button" data-bind="click: blocks.main.AddToCart" class="btn"><i class="icon icon-cart"></i>В&nbsp;корзину</button><br/><!-- /ko --><!-- ko if: blocks.main.showBuy -->
-                <button type="button" data-bind="click: blocks.main.Buy" class="btn">Купить сразу</button><!-- /ko --><!-- ko if: blocks.main.IsFavorite -->
-                <div class="like_button active"><a href="javascript:void(0);" data-bind="click: blocks.main.ClickFavorites" class="pseudo-link">Избранный товар</a></div><!-- /ko --><!-- ko ifnot: blocks.main.IsFavorite -->
-                <div class="like_button"><a href="javascript:void(0);" data-bind="click:blocks.main.AddFavorites" class="pseudo-link">В избранное</a></div><!-- /ko -->
-                <div id="dialog-form-batch" style="display: none" title="Добавить комментарий к избранному товару.">
-                  <textarea name="comment" rows="10" cols="50" data-bind="value : blocks.main.comment"></textarea>
-                </div>
+                <button type="button" data-bind="click: blocks.main.Buy" class="btn">Купить сразу</button><!-- /ko -->
+                  <!-- ko if: blocks.main.showFavorites -->
+                      <!-- ko if: blocks.main.IsFavorite -->
+                      <div class="like_button active">
+                          <a href="javascript:void(0);" data-bind="click: blocks.main.ClickFavorites" class="pseudo-link">Избранный товар</a>
+                      </div>
+                      <!-- /ko -->
+                      <!-- ko ifnot: blocks.main.IsFavorite -->
+                      <div class="like_button">
+                          <a href="javascript:void(0);" data-bind="click:blocks.main.AddFavorites" class="pseudo-link">В избранное</a>
+                      </div>
+                      <!-- /ko -->
+                  <!-- /ko -->
               </div>
             </div>
           </div>
