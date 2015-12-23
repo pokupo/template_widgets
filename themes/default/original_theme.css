@@ -647,7 +647,7 @@ textarea:focus {
 }
 
 
-}.icon-store--small:before {
+.icon-store--small:before {
 	background-image: url("../../images/sprite.png");
 	background-position: -858px -483px;
 }
@@ -4138,8 +4138,23 @@ p.error_form {
 	background-position: -118px -184px;
 }
 
+#icon-search{
+    fill: #333333;
+}
+
 .b-search__input {
 	color: #333;
+}
+
+input[type=checkbox] + label.search-btn-label:before {
+    background-image: url("images/sprite.png");
+    background-position: -294px -222px;
+}
+
+
+input[type=checkbox]:checked + label.search-btn-label:before{
+    background-image: url("images/sprite.png");
+    background-position: -319px -222px;
 }
 
 .menu-login .not-logged-in a.menu-login__login {
@@ -4196,6 +4211,57 @@ section.subheader.subheader--min .menu-login .not-logged-in a.menu-login__login:
 	background-position: -321px -165px;
 }
 
+/* Новые стили после замены h1 и hgroup */
+.video .hg {
+    color: #fff;
+}
+
+.with-icon.hg:after {
+    border: 2px solid #ffa800;
+}
+
+.partnership .hg.with-icon.icon__chair:before {
+    background-image: url("images/sprite.png");
+    background-position: -384px -361px;
+}
+
+.partnership .hg.with-icon.icon__chair:after {
+    border-color: #fff;
+}
+
+.partnership .hg.with-icon.icon__note:before {
+    background-image: url("images/sprite.png");
+    background-position: -379px -693px;
+}
+
+partnership .hg.with-icon.icon__note:after {
+    border-color: #fff;
+}
+
+.accordeon .orange.accordeon__header .hg.with-icon:after {
+    border-color: #000;
+}
+
+.grade-2 h2.foremost {
+    color: #02903d;
+}
+
+.grade-3 h2.foremost {
+    color: #ffa800;
+}
+
+.b-catalog-banner__slide .hg {
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.6);
+}
+
+h2.b-sidebar__title {
+    color: #000;
+}
+
+h2.event__title {
+    color: #000;
+}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 144dpi) {
 
@@ -4416,6 +4482,45 @@ table.responsive-table tr {
     
 .profile-cart .b-profile-info__characters-list:first-of-type {
 	border-top: 1px solid #ccc;
+}
+
+}
+
+.icon-user{
+	background: url("images/sprite.png");
+	background-position: -210px -222px;
+}
+
+.icon-user:hover{
+	background-position: -264px -28px;
+}
+
+/* Правка меню */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 641px) and (max-width: 932px) {
+  
+
+
+section.header {
+    border-bottom: 1px solid #ccc;
+}
+
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 320px) and (max-width: 680px) {
+
+
+section.header {
+    border-bottom: 1px solid #ccc;
+}
+
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 320px) and (max-width: 566px) {
+
+  
+.icon-user {
+    background: url("images/sprite.png");
+    background-position: -210px -222px;
 }
 
 }

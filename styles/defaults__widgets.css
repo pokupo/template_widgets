@@ -829,7 +829,7 @@ span.fancytree-node.fancytree-error span.fancytree-title {
 .b-item__picture {
 	height: 228px;
 	line-height: 228px;
-	background: url("../images/catalog/default.png") 50% 50% no-repeat;
+	background: url("../themes/default/images/catalog/default.png") 50% 50% no-repeat;
 	vertical-align: middle;
 	text-align: center;
 }

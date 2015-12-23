@@ -66,7 +66,9 @@
 					<div class="menu-login">
 						<div class="not-logged-in hidden"><a id="js-login" href="javascript:void(0);" title="Войти" class="menu-login__login">Вход</a><a href="javascript:void(0);" title="Зарегистрироваться" class="menu-login__register">Регистрация</a>
 						</div>
-						<div class="logged-in"><a href="https://seller.pokupo.ru/login" class="btn btn-sm"><i class="icon icon-store--small"></i>Мой магазин</a>
+                        <div class="logged-in"><!-- <a href="https://seller.pokupo.ru/login" class="btn btn-sm"><i class="icon icon-store--small"></i>Мой магазин</a> !-->
+				            <a href="https://seller.pokupo.ru/login" class="icon-user circle-btn" title="Кабинет продавца"></a>
+                            <a href="#" onclick="Routing.SetHash('registration_seller', 'Открыть магазин', {}); return false;" class="btn btn-sm"><i class="icon icon-store--small"></i>Открыть магазин</a>
 						</div>
 					</div><span id="toggleNav"><i class="icon icon-menu"></i>Меню</span>
 					<ul class="menu b-navigation">
@@ -107,6 +109,24 @@
 				</div>
 			</section>
 			<!-- /header -->
+            <!-- search -->
+            <div class="search-wrap orange">
+	 	        <div class="container">
+                    <input class="search-btn" id="search-btn" type="checkbox">
+                    <label class="search-btn-label" for="search-btn"><a href="#" title="Поиск по сайту"></a></label>		
+	 	            <section class="orange search promo">
+	 	                <div class="container">
+	 	                    <div class="b-search">
+	 	                        <div class="b-search-holder">
+	 	                            <input type="search" placeholder="Поиск по сайту..." class="b-search__input">
+	 	                        </div>
+	 	                        <button type="button" class="b-search__button">Найти</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- /search -->				
 			<!-- video -->
 			<section class="video">
 				<div class="container">
@@ -117,10 +137,10 @@
 						</div>
 						<div class="first double column">
 							<div class="content">
-								<hgroup>
-									<h1>Добро пожаловать<br/>на <span class="inline-logo"><i class="green">Pokupo</i><i class="yellow">.ru</i></span>,</h1>
+								<div class="hg">
+									<h2 class="foremost">Добро пожаловать<br/>на <span class="inline-logo"><i class="green">Pokupo</i><i class="yellow">.ru</i></span>,</h2>
 									<h2>торговую платформу<br/>полного цикла</h2>
-								</hgroup>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -134,10 +154,10 @@
 			<section class="register orange patterned">
 				<div class="register-wrapper">
 					<div class="container">
-						<hgroup>
+						<div class="hg">
 							<h1>Создай магазин бесплатно</h1>
 							<h2 class="lead">Это очень просто и и не займёт больше минуты</h2>
-						</hgroup>
+						</div>
 						<form>
 							<div class="columns">
 								<div class="first double column">
@@ -168,13 +188,13 @@
 			<!-- cases -->
 			<section class="cases">
 				<div class="container">
-					<hgroup>
-						<h1><span class="inline-logo"><i class="green">Pokupo</i><i class="yellow">.ru </i></span>подходит для всех</h1>
+					<div class="hg">
+						<h2 class="foremost"><span class="inline-logo"><i class="green">Pokupo</i><i class="yellow">.ru </i></span>подходит для всех</h2>
 						<h2 class="lead">Выберите свой вариант использования системы</h2>
-					</hgroup>
+					</div>
 					<div id="cases">
 						<div class="slide">
-							<h1>Offline продавец</h1>
+							<h2 class="foremost">Offline продавец</h2>
 							<div class="conditions">
 								<div class="conditions__status">
 									<div class="conditions__circle">
@@ -198,7 +218,7 @@
 							</ul>
 						</div>
 						<div class="slide">
-							<h1>Вебмастер</h1>
+							<h2 class="foremost">Вебмастер</h2>
 							<div class="conditions">
 								<div class="conditions__status">
 									<div class="conditions__circle no">
@@ -222,7 +242,7 @@
 							</ul>
 						</div>
 						<div class="slide">
-							<h1>Online продавец</h1>
+							<h2 class="foremost">Online продавец</h2>
 							<div class="conditions">
 								<div class="conditions__status">
 									<div class="conditions__circle">
@@ -246,7 +266,7 @@
 							</ul>
 						</div>
 						<div class="slide">
-							<h1>Online продавец</h1>
+							<h2 class="foremost">Online продавец</h2>
 							<div class="conditions">
 								<div class="conditions__status">
 									<div class="conditions__circle no">
@@ -276,7 +296,7 @@
 			<!-- benefits -->
 			<section class="benefits">
 				<div class="container">
-					<h1>Наши преимущества</h1>
+					<h2 class="foremost">Наши преимущества</h2>
 					<div class="benefits-slider chain-slider">
 						<div>
 							<div class="benefit"><i class="simple"></i>
@@ -378,22 +398,22 @@
 			<!-- portal -->
 			<section class="portal">
 				<div class="container">
-					<hgroup>
+                    <div class="hg">
 						<img src="../images/ui/shop.png" alt="">
-						<h1>Торговый портал <span class="inline-logo"><i class="green">Pokupo</i><i class="yellow">.ru</i></span></h1>
+						<h2 class="foremost">Торговый портал <span class="inline-logo"><i class="green">Pokupo</i><i class="yellow">.ru</i></span></h2>
 						<h2 class="lead">
               Посмотрите работающий магазин на основе нашей технологии.<br/>
-              Важно подчеркнуть, что у нас нет демо­магазина, у нас есть рабочая торговая площадка, именно<br/>
+              Важно подчеркнуть, что у нас нет демомагазина, у нас есть рабочая торговая площадка, именно<br/>
               здесь можно выставлять свои товары всем у кого нет своего сайта.
             </h2>
-					</hgroup><a href="javascript:void(0);" class="external"><i></i>Открыть торговый портал</a>
+					</div><a href="javascript:void(0);" class="external"><i></i>Открыть торговый портал</a>
 				</div>
 			</section>
 			<!-- /portal -->
 			<!-- mission -->
 			<section class="mission">
 				<div class="container">
-					<h1>Наша миссия</h1>
+					<h2 class="foremost">Наша миссия</h2>
 					<div class="quote">
 						<blockquote class="cite">
 							«Построение созидающей информационно-технической среды
@@ -407,7 +427,7 @@
 			<!-- clients -->
 			<section class="clients">
 				<div class="container">
-					<h1>Наши клиенты</h1>
+					<h2 class="foremost">Наши клиенты</h2>
 					<ul class="clients">
 						<li><i class="client alfabank"></i>
 						</li>
@@ -426,7 +446,7 @@
 			<!-- clients -->
 			<section class="grey seo-frontpage">
 				<div class="container">
-					<h1 class="with-icon">Сервис создания интернет-магазина</h1>
+					<h2 class="with-icon foremost">Сервис создания интернет-магазина</h2>
 					<h2 class="subheader">для любителей быстрых и эффективных решений</h2>
 					<p>Один из самых великих людей современности Билл Гейтс как-то сказал, что в ближайшем будущем только те компании смогут не только держаться на плаву, но и богатеть, которые правильно будут использовать возможности интернета.</p>
 					<p>Время показало, что он был прав, как говорится, на все 100%.
@@ -484,7 +504,7 @@
 							</div>
 						</div>
 					</div>
-					<h1>Хотите бесплатно создать интернет-магазин?</h1>
+					<h2 class="foremost">Хотите бесплатно создать интернет-магазин?</h2>
 					<h2 class="subheader">Вы это можете!</h2>
 					<p>Мы — это молодая команда знающих свое дело профессионалов самого высокого класса. Обратившись к нам за бесплатным созданием интернет-магазина, вы не прогадаете. Все, что у нас есть — наши собственные, уникальные разработки. Такого нет больше нигде.
 						И если вы хотите бесплатно создать функциональный и красивый сайт интернет-магазина, то вы это сделаете.</p>

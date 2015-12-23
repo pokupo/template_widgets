@@ -49,15 +49,47 @@
 		<meta name="copyright" content="©tabrisov">
 		<meta name="reply-to" content="jiexa@tabrisov.ru">
 		<link href="../styles/main.css" rel="stylesheet">
-		<link href="../themes/default/original_theme.css" rel="stylesheet">				
+		<link id="theme" href="../themes/default/original_theme.css" rel="stylesheet">				
 		<link href="../images/icons/favicon.ico" rel="shortcut icon">
 		<!--[if lt IE 9]> 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="../scripts/libs/nwmatcher.js"></script>
     <script src="../scripts/libs/ie8canvas.js"></script>
     <![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../scripts/libs/jquery.style-switcher.js"></script>       
+        <script type="text/javascript">
+            $(document).ready(function() {
+	           $('#selector').styleSwitcher({
+                 directory:"../themes/"
+                });
+            });
+        </script>      
 	</head>
 	<body>
+	    <div id="selector">
+            <a href="javascript: void(0)" title="Оригинальная тема" id="theme1" class="switch">
+		        <div></div>
+		    </a>
+		    <a href="javascript: void(0)" title="Женская тема" id="theme2" class="switch">
+		        <div></div>
+		    </a>
+		    <a href="javascript: void(0)" title="Красно-черная тема" id="theme3" class="switch">
+		        <div></div>
+		    </a>
+            <a href="javascript: void(0)" title="Черно-золотая тема" id="theme4" class="switch">
+		        <div></div>
+		    </a>
+		    <a href="javascript: void(0)" title="Светло-голубая тема" id="theme5" class="switch">
+		        <div></div>
+		    </a>
+		    <a href="javascript: void(0)" title="Коричнево-зеленая тема" id="theme6" class="switch">
+		        <div></div>
+		    </a>
+		    <a href="javascript: void(0)" title="Красно-заленая тема" id="theme7" class="switch">
+		        <div></div>
+		    </a>                  
+        </div>
 		<div class="main">
 			<!-- header -->
 			<section class="header">
@@ -331,7 +363,7 @@
 				<div class="container">
 					<aside class="b-sidebar dropdown"><a href="javascript:void(0);" data-target="sidebar" class="btn btn-menu dropdown__trigger"><i class="icon icon-catalog"></i>Каталог</a>
 						<div data-target="sidebar" class="b-sidebar__dropdown dropdown__content hidden">
-							<h1 class="b-sidebar__title">Пример каталога</h1>
+							<h2 class="b-sidebar__title foremost">Пример каталога</h2>
 							<ul class="menu">
 								<li class="menu__item with-submenu">
 									<u><span>Компьютерная техника</span></u>
@@ -818,7 +850,7 @@
 													<div class="b-profile-info__photo">
 														<img src="../images/pages/catalog/seller-logo.png">
 													</div>
-													<h1 class="b-profile-info__title">Торговая платформа Pokupo</h1>
+													<h2 class="b-profile-info__title foremost">Торговая платформа Pokupo</h2>
 													<h2 class="b-profile-info__subtitle">ID 19158495</h2>
 													<ul class="b-profile-info__characters-list">
 														<li><span class="char">Рейтинг: </span><span class="value value--orange">+264</span>
@@ -936,7 +968,7 @@
 										</dl>
 									</div>
 									<div class="b-catalog-item__aux b-reviews">
-										<h1 class="with-button">Отзывы</h1>
+										<h2 class="with-button foremost">Отзывы</h2>
 										<button id="js-addReview" type="button" class="btn btn-xxs">Написать</button>
 										<ul class="reviews-list">
 											<li class="b-review">
@@ -1305,7 +1337,7 @@
 			<div id="request_form" style="display:none" class="fade in">
 				<div class="popup review-form">
 					<header class="noheader">
-						<h1>Оставить отзыв от товаре</h1><span id="js-close_request_form" class="close-popup btn-circle btn-circle--drop btn-circle--orange"></span>
+						<h2 class="foremost">Оставить отзыв от товаре</h2><span id="js-close_request_form" class="close-popup btn-circle btn-circle--drop btn-circle--orange"></span>
 					</header>
 					<div class="content">
 						<div id="request_form_wrapper">
@@ -1330,13 +1362,13 @@
 							</form>
 						</div>
 						<div id="send_request_success" class="hidden send_request_result">
-							<h1>Ваша заявка отправлена</h1>
+							<h2 class="foremost">Ваша заявка отправлена</h2>
 							<p>&nbsp;</p>
 							<p>Ответ на неё придёт на указанный вами адрес электронной почты.
 								<br/>Спасибо за интерес к нашей работе!</p>
 						</div>
 						<div id="send_request_fail" class="hidden send_request_result">
-							<h1>Ошибка!</h1>
+							<h2 class="foremost">Ошибка!</h2>
 							<p>&nbsp;</p>
 							<p>При отправке заявки произошла ошибка.
 								<br/>Попытайтесь ещё раз или свяжитесь с нами удобным вам способом.</p>
@@ -1412,7 +1444,7 @@
 			</div>
 		</footer>
 		<!-- /footer -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 		<script src="http://vjs.zencdn.net/4.7/video.js"></script>
 		<script src="../scripts/libs/jquery.fancytree-all.js"></script>

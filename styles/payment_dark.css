@@ -755,6 +755,7 @@ body {
 }
 .pkp_html .pkp_body #pkp-container .pkp-contributors-intruct {
   padding-top: 4px;
+  color: #fff;
 }
 .pkp_html .pkp_body #pkp-container .pkp-contributors-intruct__list {
   padding: 0;

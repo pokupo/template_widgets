@@ -6,10 +6,10 @@
     <div id="related_goods_slider" data-bind="css: cssBlockContainer" class="b-catalog-banner promoBlocks"><!-- ko foreach: content  -->
       <div data-bind="css: cssBlock, attr: {style: backgroundImage}" class="b-catalog-banner__slide">
         <div class="container">
-          <hgroup>
-            <h1 data-bind="text: parent.titleBlock"></h1>
+          <div class="hg">
+            <h2 class="foremost" data-bind="text: parent.titleBlock"></h2>
             <h2 data-bind="title: chortName" class="lead"></h2>
-          </hgroup>
+          </div>
         </div>
       </div><!-- /ko -->
     </div><!-- /ko -->

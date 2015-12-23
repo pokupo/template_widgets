@@ -1,21 +1,21 @@
 
 <script id="emptyCabinetCartGoodsTmpl" type="text/html">
   <!-- version 1.0 -->
-  <div class="profile">
-    <div class="container">
-      <h1 class="b-profile__header">Корзина</h1>
-      <div>
-        <p>В корзине нет ни одного товара.</p>
+    <section>
+      <div class="container">
+        <div class="content">
+          <h1>В корзине нет ни одного товара.</h1>
+          <p><a href="#" onclick="Routing.SetHash('default', 'Домашняя', {});">На главную</a></p>
+        </div>
       </div>
-    </div>
-  </div>
+  </section>
 </script>
 <script id="cabinetCartGoodsTmpl" type="text/html">
   <!-- version 1.0 -->
   <div class="profile">
     <div class="container">
       <h1 class="b-profile__header">Корзина</h1><!-- ko foreach: sellerBlock -->
-      <div data-bind="embedWidget :{ widget : 'InfoSellerWidget-1.0', params : {data : sellerInfo, tmpl : {path: 'http://promodev.pokupo.ru/themes/default/tmpl/infoSellerTmpl.html', id : 'infoSellerTmpl'}}}" class="b-profile-info b-profile-info--fullwidth"></div>
+      <div data-bind="embedWidget :{ widget : 'InfoSellerWidget-1.0', params : {data : sellerInfo}}" class="b-profile-info b-profile-info--fullwidth"></div>
       <ol class="b-order-list">
         <li class="b-order-item b-thead">
           <div class="b-order-item__checkbox">
@@ -76,9 +76,22 @@
     </div>
     <div class="b-order-item__qty">
       <div class="limits-wrapper">
+        <!-- ko ifnot: showSelectionCount() -->
         <p class="b-catalog-item__limits">На складе: <span data-bind="text: countReserv" class="value"></span></p>
-        <div class="b-increment-input"><span data-bind="click: ClickMinus" class="b-increment-input__darr"></span><span class="b-increment-input__input-wrapper">
-            <input type="text" data-name="qty" value="5" maxlength="3" autocomplete="off" data-min="1" data-max="5" data-bind="value: ordered" class="inline-input b-increment-input__input"/></span><span data-bind="click: ClickPlus" class="b-increment-input__uarr"></span></div>
+        <div class="b-increment-input">
+          <span data-bind="click: ClickMinus" class="b-increment-input__darr"></span>
+          <span class="b-increment-input__input-wrapper">
+            <input type="text" data-name="qty" value="5" maxlength="3" autocomplete="off" data-min="1" data-max="5" data-bind="value: ordered" class="inline-input b-increment-input__input"/></span>
+          <span data-bind="click: ClickPlus" class="b-increment-input__uarr"></span>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: showSelectionCount() -->
+        <div class="b-order-item__qty">
+          <span class="b-increment-group">
+          <span data-bind="text: ordered" class="b-increment-group__qty">1</span>
+          </span>
+        </div>
+        <!-- /ko -->
       </div>
     </div>
     <div class="b-order-item__cost"><!-- ko if: discount() != 0 --><span class="b-order-item__discount">-

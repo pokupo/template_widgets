@@ -18,7 +18,7 @@
             <span class="pkp-span">Основание платежа</span>
             <strong class="pkp-strong">Оплата «<!-- ko text: title --><!-- /ko -->»</strong>
 
-            <form class="pkp-form j-pkp-payment" action="#">
+            <form class="pkp-form j-pkp-payment" action="#" data-bind="attr: {id: cssForm}">
                 <!-- ko if: show.errorBase -->
                 <p>
                     <span class="pkp-error-msg" style="display: inline; position: relative" data-bind="text: error.base"></span>
@@ -60,6 +60,9 @@
                     </div>
                 <!-- /ko -->
             </form>
+            <div class="pkp-btns-holder">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+            </div>
             <div class="pkp-footer">
                 <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
             </div>
@@ -141,7 +144,7 @@
             <!-- /ko -->
 
             <!-- ko if: isInData() -->
-                <form class="pkp-receipt-form" data-bind="attr: {id: cssInDataForm}" method="POST" target="upload_target" enctype="multipart/form-data">
+                <form class="pkp-receipt-form" data-bind="attr: {id: cssInDataForm}, submit: ClickSubmit" method="POST" enctype="multipart/form-data">
                     <!-- ko foreach: inData -->
 
                         <!-- ko if: typeField() == "hidden" -->
@@ -162,6 +165,11 @@
                                         </div>
                                     <!-- /ko -->
                                 </div>
+                                <!-- ko if: error() -->
+                                <div class="error__message">
+                                    <p data-bind="text: error()"></p>
+                                </div>
+                                <!-- /ko -->
                                 <!-- ko if: typeField() == "select" -->
                                     <!--  ko template: { name: 'standalonePaymentSelectFieldTmpl' } --><!-- /ko -->
                                 <!-- /ko -->
@@ -198,14 +206,14 @@
             <!-- ko if: !isPayForm() && isInData() -->
                 <div class="pkp-btns-holder">
                     <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
-                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickSubmit">Обновить</button>
+                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickSubmit, text: captionSubmit"></button>
                 </div>
             <!-- /ko -->
 
             <!-- ko if: !isPayForm() && !isInData() -->
                 <div class="pkp-btns-holder">
                     <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
-                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickRefresh">Обновить</button>
+                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickRefresh, text: captionSubmit"></button>
                 </div>
             <!-- /ko -->
 
@@ -223,7 +231,7 @@
                     <!-- ko if: idMethodPayment -->
                     <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
                     <!-- /ko -->
-                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickPay">Оплатить</button>
+                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickPay, text: captionSubmit"></button>
                 </div>
             <!-- /ko -->
 
@@ -240,18 +248,18 @@
         <option value="" data-bind="value: value, text: label" selected="selected"></option>
         <!-- /ko -->
         <!-- ko ifnot: value() == $parent.value() -->
-        <option value="" data-bind="value: value(), text: label"></option>
+        <option value="" data-bind="value: value, text: label"></option>
         <!-- /ko -->
         <!-- /ko -->
     </select>
 </script>
 
 <script type="text/html" id="standalonePaymentTextFieldTmpl">
-    <input class="pkp-input pkp-receipt-form__input" type="text" value="" data-bind="value: value(), attr: {type: typeField(), name: name(), id: cssField(), placeholder: label()}"/>
+    <input class="pkp-input pkp-receipt-form__input" type="text" value="" data-bind="value: value, attr: {type: typeField(), name: name(), id: cssField(), placeholder: label()}"/>
 </script>
 
 <script type="text/html" id="standalonePaymentTextareaFieldTmpl">
-    <textarea  name="" data-bind="attr: {name: name()}, text: value(), placeholder: label()"></textarea>
+    <textarea  name="" data-bind="attr: {name: name()}, text: value, placeholder: label()"></textarea>
 </script>
 
 <script type="text/html" id="standalonePaymentCheckboxFieldTmpl">
@@ -259,10 +267,10 @@
         <!-- ko foreach: listSelect -->
             <label class="pkp-label-checkbox">
                 <!-- ko if: value == $parent.value() -->
-                    <input class='pkp-input-checkbox' type="checkbox" checked="checked" name="" value="" data-bind="value: value(), attr: { name: $parent.name()}"/>
+                    <input class='pkp-input-checkbox' type="checkbox" checked="checked" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"/>
                 <!-- /ko -->
                 <!-- ko ifnot: value == $parent.value() -->
-                    <input class='pkp-input-checkbox' type="checkbox" name="" value="" data-bind="value: value(), attr: { name: $parent.name()}"/>
+                    <input class='pkp-input-checkbox' type="checkbox" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"/>
                 <!-- /ko -->
                 <span class='block-label b-small-text' for="" data-bind="text: $parent.label(), attr: { 'for': $parent.name()}"></span>
             </label>
@@ -271,7 +279,7 @@
 
     <!-- ko if: listSelect().length == 0 -->
     <label class="pkp-label-checkbox">
-        <input class="pkp-input-checkbox" type="checkbox" name="" value="" data-bind="value: value(), attr: { name: name()}"/>
+        <input class="pkp-input-checkbox" type="checkbox" name="" value="" data-bind="value: value, attr: { name: name()}"/>
         <span class='block-label b-small-text' for="" data-bind="text: label(), attr: { 'for': name()}"></span>
     </label>
     <!-- /ko -->

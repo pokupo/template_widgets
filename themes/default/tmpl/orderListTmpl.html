@@ -269,13 +269,12 @@
     </td>
     <td class="b-order-table__title"><a href="javascript:void(0);" data-bind="text: fullName, click: ClickGoods"></a><!-- ko if: isEgoodsPaid() --><!-- ko foreach: EGoods -->
       <div class="b-order-table__info">
-        <p class="b-order-table__label">Скачиваний <b>
-            <!-- ko text: countUpload -->
-            <!-- /ko --></b>из<b>
-            <!-- ko text: maxUpload -->
-            <!-- /ko --></b><!-- ko if: expiration -->, доступно до 
-          <!-- ko text: expiration -->
-          <!-- /ko --><!-- /ko -->
+        <p class="b-order-table__label">
+          Скачиваний <b><!-- ko text: countUpload --><!-- /ko --></b> из <b><!-- ko text: maxUpload --><!-- /ko --></b>
+            <!-- ko if: expiration -->
+            , доступно до <!-- ko text: expiration -->
+            <!-- /ko -->
+          <!-- /ko -->
         </p><a data-bind="attr: {href: uploadFile}" class="btn btn-sm"><i class="icon icon-download"></i>Загрузить</a><span>
           <!-- ko text: sizeFile -->
           <!-- /ko --></span>

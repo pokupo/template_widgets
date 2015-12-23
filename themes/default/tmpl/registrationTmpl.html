@@ -60,7 +60,7 @@
               <div class="error__message">
                 <p data-bind="text: errorFirstPassword"></p>
               </div><!-- /ko -->
-              <input type="password" name="password" value="" placeholder="Пароль" data-bind="value: firstPassword, attr : {id: cssFirstPassword}" class="block-input"/>
+              <input type="password" name="password" value="" autocomplete="off" placeholder="Пароль" data-bind="value: firstPassword, attr : {id: cssFirstPassword}" class="block-input"/>
             </div>
           </div>
           <div class="input-holder">
@@ -69,7 +69,7 @@
               <div class="error__message">
                 <p data-bind="text: errorSecondPassword"></p>
               </div><!-- /ko -->
-              <input type="password" name="password-double" value="" placeholder="Повторить пароль" data-bind="value: secondPassword, attr : {id: cssSecondPassword}" class="block-input"/>
+              <input type="password" name="password-double" value="" autocomplete="off" placeholder="Повторить пароль" data-bind="value: secondPassword, attr : {id: cssSecondPassword}" class="block-input"/>
             </div>
           </div>
           <div style="padding-top: 13px;" class="input-holder">

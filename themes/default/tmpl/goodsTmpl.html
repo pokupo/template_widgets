@@ -17,7 +17,7 @@
         <div class="content">
           <div class="b-catalog-item__seller-info slidedown"><span id="user_information_slidedown" data-target="info" class="slidedown__trigger">Информация о продавце</span>
             <div data-target="info" class="slidedown__content hidden">
-              <div data-bind="embedWidget :{ widget : 'InfoSellerWidget-1.0', params : {data : sellerInfo}}" class="b-profile-info"></div>
+              <div data-bind="embedWidget :{ widget : 'InfoSellerWidget-1.0.min', params : {data : sellerInfo}}" class="b-profile-info"></div>
             </div>
           </div>
           <div class="columns triple columns--resp_fix">
@@ -26,7 +26,7 @@
                 <div class="b-catalog-item__description">
                   <div class="b-stars">
                     <div data-bind="attr: {style: 'width:' + blocks.main.ratingGoods + '%'}" class="b-stars__rating"></div>
-                  </div><!-- ko foreach: moreBlock --><!-- ko if: key == "opinion" --><!-- ko if: content --><span class="pseudo-link">
+                  </div><!-- ko foreach: moreBlock --><!-- ko if: key == "opinion" --><!-- ko if: content --><span class="pseudo-link" id="opinion_btn">
                     <!-- ko text: content.params.length -->
                     <!-- /ko--> отзыва</span><!-- /ko --><!-- /ko --><!-- /ko -->
                   <p data-bind="html: blocks.main.fullName"></p>
@@ -51,7 +51,12 @@
             <div class="third column">
               <div class="content b-catalog-item__actions">
                 <div class="increase">
-                  <p class="b-catalog-item__limits">На складе: <span data-bind="text: blocks.main.inStock" class="value"></span></p><!-- ko if: blocks.main.showSelectionCount -->
+                  <!-- ko ifnot: blocks.main.isEgoods -->
+                  <p class="b-catalog-item__limits">
+                    На складе: <span data-bind="text: blocks.main.inStock" class="value"></span>
+                  </p>
+                  <!-- /ko -->
+                  <!-- ko if: blocks.main.showSelectionCount -->
                   <div style="margin-bottom:20px" class="b-increment-input"><span data-bind="click: blocks.main.ClickMinus" class="b-increment-input__darr"></span><span class="b-increment-input__input-wrapper">
                       <input type="text" value="1" maxlength="3" autocomplete="off" data-bind="value: blocks.main.ordered" class="inline-input b-increment-input__input"/></span><span data-bind="click: blocks.main.ClickPlus" class="b-increment-input__uarr"></span></div><!-- /ko -->
                 </div><!-- ko if: blocks.main.showAddToCart -->
@@ -76,9 +81,8 @@
         </div>
       </div>
     </div>
-    <div data-bind="template: { name: 'goodsMoreBlockTmpl' }" class="b-catalog-item__aux"></div><!-- ko foreach: moreBlock --><!-- ko if: key == "opinion" --><!-- ko if: content -->
-    <div data-bind="template: { name: 'goodsOpinionBlockTmpl' }" class="b-catalog-item__aux b-reviews"></div><!-- /ko --><!-- /ko --><!-- /ko -->
-    <div data-bind="embedWidget :{ widget : 'RelatedGoodsWidget-1.0', params : {id : id, typeView: 'carousel', count: 6, countTile : 6, tmpl : {path: 'http://promodev.pokupo.ru/themes/default/tmpl/relatedGoodsTmpl.html'}}}"></div>
+    <div data-bind="template: { name: 'goodsMoreBlockTmpl' }" class="b-catalog-item__aux"></div>
+    <div data-bind="embedWidget :{ widget : 'RelatedGoodsWidget-1.0.min', params : {id : id}}"></div>
   </div>
 </script>
 <script id="goodsGalleryBlockTmpl" type="text/html">
@@ -94,15 +98,23 @@
 </script>
 <script id="goodsMoreBlockTmpl" type="text/html">
   <!-- version 1.0-->
-  <dl id="more_block" class="tabs tabs--noskin"><!-- ko foreach: moreBlock --><!-- ko ifnot: key == 'opinion' --><!-- ko if: content --><!-- ko if: $index() == 0 -->
-    <dt class="tab__trigger selected"><span data-bind="text: title"></span></dt>
-    <dd class="tab__content selected">
-      <div data-bind="template: { name: templateName }" class="content"></div>
-    </dd><!-- /ko --><!-- ko if: $index() != 0 -->
-    <dt class="tab__trigger"><span data-bind="text: title"></span></dt>
-    <dd class="tab__content">
-      <div data-bind="template: { name: templateName }" class="content"></div>
-    </dd><!-- /ko --><!-- /ko --><!-- /ko --><!-- /ko -->
+  <dl id="more_block" class="tabs tabs--noskin">
+    <!-- ko foreach: moreBlock -->
+      <!-- ko if: content -->
+      <!-- ko if: $index() == 0 -->
+      <dt class="tab__trigger selected" data-bind="attr: {'id': key}"><span data-bind="text: title"></span></dt>
+      <dd class="tab__content selected" data-bind="attr: {'id': key + '_content'}">
+        <div data-bind="template: { name: templateName }" class="content"></div>
+      </dd>
+      <!-- /ko -->
+      <!-- ko if: $index() != 0 -->
+      <dt class="tab__trigger" data-bind="attr: {'id': key}"><span data-bind="text: title"></span></dt>
+      <dd class="tab__content" data-bind="attr: {'id': key + '_content'}">
+        <div data-bind="template: { name: templateName }" class="content"></div>
+      </dd>
+      <!-- /ko -->
+      <!-- /ko -->
+    <!-- /ko -->
   </dl>
 </script>
 <script id="goodsDescriptionBlockTmpl" type="text/html">
@@ -124,7 +136,6 @@
 </script>
 <script id="goodsOpinionBlockTmpl" type="text/html">
   <!-- version 1.0-->
-  <h1 class="with-button">Отзывы</h1>
   <ul class="reviews-list"><!-- ko foreach: content.params -->
     <li class="b-review">
       <div class="b-review__info">

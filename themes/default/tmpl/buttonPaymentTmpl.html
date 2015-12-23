@@ -22,13 +22,16 @@
             </li><!-- /ko -->
           </ul>
         </div>
+        <!-- ko if: instruction -->
         <div class="b-invoice__block">
           <h2 class="b-invoice__title">Инструкция</h2>
           <p data-bind="html: instruction, attr: {id: cssInstruction }"></p>
           <p></p>
           <div class="print-button"><span data-bind="click: ClickPrintInstruction" class="pseudo-link">Распечатать инструкцию</span></div>
           <p></p>
-        </div><!-- ko if: isInData() -->
+        </div>
+        <!-- /ko -->
+        <!-- ko if: isInData() -->
         <div class="b-invoice__block">
           <from data-bind="attr: {id: cssInDataForm}" method="POST" target="upload_target" enctype="multipart/form-data">
             <h2 class="b-invoice__title">Укажите данные</h2><!-- ko foreach: inData --><!-- ko if: typeField() == "hidden" -->
