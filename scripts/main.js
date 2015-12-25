@@ -818,10 +818,23 @@ PKP.Forms = {
 			circle = new ProgressCircle({
 				canvas: canvas,
 			});
+			
+			function getCookie(name) {
+				var matches = document.cookie.match(new RegExp(
+				"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+				));
+				return matches ? decodeURIComponent(matches[1]) : undefined;
+			}
+			
+			var isCookie = getCookie("style_selected")
+			if(isCookie){
+				var computedStyle = getComputedStyle(document.getElementById(isCookie));
+				color = computedStyle.borderColor;
+			}
 
 			circle
 				.addEntry({
-					fillColor: '#ffa800',
+					fillColor: color,
 					progressListener: function() {return progress;}
 				})
 				.start(30);
@@ -868,9 +881,22 @@ PKP.Forms = {
 				canvas: canvas,
 			});
 
+			function getCookie(name) {
+				var matches = document.cookie.match(new RegExp(
+				"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+				));
+				return matches ? decodeURIComponent(matches[1]) : undefined;
+			}
+			
+			var isCookie = getCookie("style_selected")
+			if(isCookie){
+				var computedStyle = getComputedStyle(document.getElementById(isCookie));
+				color = computedStyle.borderColor;
+			}
+			
 			circle
 				.addEntry({
-					fillColor: '#ffa800',
+					fillColor: color,
 					progressListener: function() {return progress;}
 				})
 				.start(30);

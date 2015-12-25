@@ -12791,7 +12791,7 @@ section.header {
 
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 320px) and (max-width: 566px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 200px) and (max-width: 566px) {
 
     
 label.search-btn-label {
@@ -12825,8 +12825,8 @@ label.search-btn-label {
 }
 
 #theme1.switch {
-    border:3px solid #00883c;
-    background: #ffa800;
+    border:3px solid #ffa800;
+    background: #00883c;
 }
 
 #theme2.switch {
@@ -12840,21 +12840,21 @@ label.search-btn-label {
 }
 
 #theme4.switch {
-    border:3px solid #333;
-    background: #fecc51;
+    border:3px solid #fecc51;
+    background: #333;
 }
 
 #theme5.switch {
-    border:3px solid #7fc2df;
-    background: #e94e76;
+    border:3px solid #00c4e0;
+    background: #009db3;
 }
 
 #theme6.switch {
-    border:3px solid #e31836;
-    background: #444444;
+    border:3px solid #82b945;
+    background: #633b1c;
 }
 
 #theme7.switch {
-    border:3px solid #e31836;
-    background: #444444;
+    border:3px solid #e31837;
+    background: #369a1e;
 }
