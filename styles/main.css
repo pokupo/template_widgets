@@ -11573,7 +11573,7 @@ section.advanced-search .inline-input--small {
 
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 641px) and (max-width: 1009px) {
+@media only screen and (min-width: 641px) and (max-width: 1009px) {
     
 #toggleNav {
 	display: inline-block;
