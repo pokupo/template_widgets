@@ -96,7 +96,7 @@ PKP.Responsive = {
 	},
 	reflow: function() {
 		var displ,
-			state = (1021 >= PKP.windowWidth) ? false : true;
+			state = (1019 >= PKP.windowWidth) ? false : true;
 
 		if(state) {
 			displ = 'inline-block';
