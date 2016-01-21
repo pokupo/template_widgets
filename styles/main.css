@@ -2013,7 +2013,7 @@ section.header {
 }
 
 #toggleNav {
-	display: none;
+	/*display: none;*/
 	font-size: 14px;
 	padding: 8px 16px;
 	position: relative;
