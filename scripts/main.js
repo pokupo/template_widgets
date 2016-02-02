@@ -753,7 +753,9 @@ PKP.UI = {
 
 	/* Всплывающие подсказки */
 	tooltip: function() {
-		// if (typeof ($.fn.tooltip) !== 'undefined') $('[data-tooltip]').tooltip();
+		 if (typeof ($.fn.tooltip) !== 'undefined')
+			 $('.icon-user').tooltip();
+		//$('[data-tooltip]').tooltip();
 	},
 
 	/* Маска для ввода телефона */
@@ -811,129 +813,108 @@ PKP.Forms = {
 			canvas,
 			circle;
 
-
-		if($('#registerWizard').length > 0) {
-			canvas = document.getElementById('progressCircle');
-
-			circle = new ProgressCircle({
-				canvas: canvas,
-			});
-			
-			function getCookie(name) {
-				var matches = document.cookie.match(new RegExp(
+		function getCookie(name) {
+			var matches = document.cookie.match(new RegExp(
 				"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-				));
-				return matches ? decodeURIComponent(matches[1]) : undefined;
-			}
-			
-			var isCookie = getCookie("style_selected")
-			if(isCookie){
-				var computedStyle = getComputedStyle(document.getElementById(isCookie));
-				color = computedStyle.borderColor;
-			}
-
-			circle
-				.addEntry({
-					fillColor: color,
-					progressListener: function() {return progress;}
-				})
-				.start(30);
-
-			$('#registerWizard').wizard({
-				// Events
-				onShowStep: function(obj) {
-					var current = (Number(obj[0].rel) * 25) / 100,
-						intervalId;
-
-					if(progress < current) {
-						intervalId = setInterval(function() {
-							if(progress < current) {
-								progress = progress + 0.015;
-							} else {
-								clearInterval(intervalId);
-							}
-							progress = (progress < current) ? progress + 0.015 : progress;
-						}, 30);
-
-					} else {
-						intervalId = setInterval(function() {
-							if(progress > current) {
-								progress = progress - 0.015;
-							} else {
-								clearInterval(intervalId);
-							}
-						}, 30);
-					}
-
-					return true;
-				}, 
-				onFinish: function() {
-					progress = 1;
-					return true;
-				}
-			});
+			));
+			return matches ? decodeURIComponent(matches[1]) : undefined;
 		}
 
-		if($('#registerShopWizard').length > 0) {
+		if($('#registerWizard').length > 0 || $('#registerShopWizard').length > 0) {
+
 			canvas = document.getElementById('progressCircle');
 
 			circle = new ProgressCircle({
 				canvas: canvas,
 			});
 
-			function getCookie(name) {
-				var matches = document.cookie.match(new RegExp(
-				"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-				));
-				return matches ? decodeURIComponent(matches[1]) : undefined;
-			}
-			
-			var isCookie = getCookie("style_selected")
-			if(isCookie){
+			var isCookie = getCookie("style_selected");
+			var color = '#fff';
+			if (isCookie) {
 				var computedStyle = getComputedStyle(document.getElementById(isCookie));
 				color = computedStyle.borderColor;
 			}
-			
+
 			circle
 				.addEntry({
 					fillColor: color,
-					progressListener: function() {return progress;}
+					progressListener: function () {
+						return progress;
+					}
 				})
 				.start(30);
 
-			$('#registerShopWizard').wizard({
-				// Events
-				onShowStep: function(obj) {
-					var current = (Number(obj[0].rel) * 33.3333) / 100,
-						intervalId;
+			if ($('#registerWizard').length > 0) {
+				$('#registerWizard').wizard({
+					// Events
+					onShowStep: function (obj) {
+						var current = (Number(obj[0].rel) * 25) / 100,
+							intervalId;
 
-					if(progress < current) {
-						intervalId = setInterval(function() {
-							if(progress < current) {
-								progress = progress + 0.015;
-							} else {
-								clearInterval(intervalId);
-							}
-							progress = (progress < current) ? progress + 0.015 : progress;
-						}, 30);
+						if (progress < current) {
+							intervalId = setInterval(function () {
+								if (progress < current) {
+									progress = progress + 0.015;
+								} else {
+									clearInterval(intervalId);
+								}
+								progress = (progress < current) ? progress + 0.015 : progress;
+							}, 30);
 
-					} else {
-						intervalId = setInterval(function() {
-							if(progress > current) {
-								progress = progress - 0.015;
-							} else {
-								clearInterval(intervalId);
-							}
-						}, 30);
+						} else {
+							intervalId = setInterval(function () {
+								if (progress > current) {
+									progress = progress - 0.015;
+								} else {
+									clearInterval(intervalId);
+								}
+							}, 30);
+						}
+
+						return true;
+					},
+					onFinish: function () {
+						progress = 1;
+						return true;
 					}
+				});
+			}
 
-					return true;
-				}, 
-				onFinish: function() {
-					progress = 1;
-					return true;
-				}
-			});
+			if ($('#registerShopWizard').length > 0) {
+				$('#registerShopWizard').wizard({
+					// Events
+					onShowStep: function (obj) {
+						var current = (Number(obj[0].rel) * 33.3333) / 100,
+							intervalId;
+
+						if (progress < current) {
+							intervalId = setInterval(function () {
+								if (progress < current) {
+									progress = progress + 0.015;
+								} else {
+									clearInterval(intervalId);
+								}
+								progress = (progress < current) ? progress + 0.015 : progress;
+							}, 30);
+
+						} else {
+							intervalId = setInterval(function () {
+								if (progress > current) {
+									progress = progress - 0.015;
+								} else {
+									clearInterval(intervalId);
+								}
+							}, 30);
+						}
+
+						return true;
+					},
+					onFinish: function () {
+						progress = 1;
+						return true;
+					}
+				});
+			}
 		}
 
 		if($('#orderWizard').length > 0) {
@@ -1504,6 +1485,27 @@ PKP.Suggestions = {
 	}
 };
 
+var Frontend = {
+	Print: function (id) {
+		var w = window.open();
+		var doc = $('#' + id).clone();
+		doc.find('footer').hide();
+		w.document.write(doc.html());
+		w.print();
+		w.close();
+	}
+};
 
 /* Поехали! */
-$($.proxy(PKP.init, PKP));
+function Init() {
+	if (typeof(jQuery) != 'undefined') {
+		$($.proxy(PKP.init, PKP));
+	}
+	else{
+		setTimeout(function(){
+			Init();
+		}, 200);
+	}
+}
+
+Init();
