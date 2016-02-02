@@ -1,0 +1,9 @@
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css|html)$">
+        Header add Access-Control-Allow-Origin "*"
+        Header add Access-Control-Allow-Headers "*"
+        Header add Access-Control-Allow-Methods "GET"
+        Header add Access-Control-Max-Age: 29030400
+        Header append Cache-Control "public"
+    </FilesMatch>
+</IfModule>

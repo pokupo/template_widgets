@@ -1,0 +1,106 @@
+<script type="text/html" id="statusPaymentPageTmpl">
+    <!-- version 1.0 -->
+    <div id="pkp-container">
+        <h3 class="pkp-title pkp-title_big">
+            Оплата счёта № <!-- ko text: orderId --><!-- /ko -->
+            <a class="pkp-print" href="" data-bind="click: ClickPrintOrder">Распечать</a>
+        </h3>
+
+        <div class="pkp-payment-info pkp-clearfix">
+            <table class="pkp-payment-info__table" data-bind="foreach: outData">
+                    <tr>
+                        <td>
+                            <!-- ko text: label --><!-- /ko -->
+                            <div class="pkp-tooltip pkp-tooltip_inline">
+                                <span class="pkp-tooltip__trigger">?</span>
+                                <div class="pkp-tooltip__content pkp-tooltip__content_left" data-bind="html: help"></div>
+                            </div>
+                        </td>
+                        <td><!-- ko text: value --><!-- /ko --></td>
+                    </tr>
+            </table>
+            <div class="pkp-payment-info__img">
+                <!-- ko if: isCancel() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/payf.png" alt=""/>
+                <!-- /ko -->
+                <!-- ko if: isPaid() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/pays.png" alt=""/>
+                <!-- /ko -->
+                <!-- ko if: isWait() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/in-treatment.jpg" alt=""/>
+                <!-- /ko -->
+                <!-- ko if: isBack() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/return.jpg" alt=""/>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <!-- ko if: instruction -->
+        <div class="pkp-rollup">
+            <a href="#" class="j-pkp-rollup__trigger pkp-rollup__trigger pkp-rollup__trigger_closed">
+                Инструкция для плательщика
+            </a>
+
+            <div class="j-pkp-rollup__content pkp-rollup__content_hidden pkp-resize-block-wrapper j-scroll">
+                <div class="pkp-resize-block">
+                    <div class="pkp-contributors-intruct" data-bind="html: instruction"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: isPaid() -->
+        <!-- ko if: egoods.length > 0 -->
+        <div class="pkp-shopping-list">
+            <h3 class="pkp-title">Цифровой товар</h3>
+
+            <div class="pkp-shopping-list__item" data-bind="foreach: egoods">
+                <strong class="pkp-shopping-list__title" data-bind="text: name_goods"></strong>
+                <span class="pkp-shopping-list__info">
+                    Скачиваний <!-- ko text: count_upload --><!-- /ko -->
+                    <!-- ko if: max_upload -->
+                    из <!-- ko text: max_upload --><!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: expiration -->
+                    ,  доступно до <!-- ko text: expiration --><!-- /ko -->
+                    <!-- /ko -->
+                </span>
+
+                <div class="pkp-upload">
+                    <a href="#" class="pkp-btn pkp-btn_upload" data-bind="attr: {href: upload_file}">Загрузить</a>
+                    <span class="pkp-upload__info">
+                        <!-- ko text: size_file --><!-- /ko -->
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+
+        <div style="display: none">
+            <div data-bind="attr: {id: cssOrder}">
+                <h3 class="pkp-title pkp-title_big">
+                    Оплата счёта № <!-- ko text: orderId --><!-- /ko -->
+                </h3>
+                <table class="pkp-payment-info__table" data-bind="foreach: outData">
+                    <tr>
+                        <td>
+                            <!-- ko text: label --><!-- /ko -->
+                        </td>
+                        <td><!-- ko text: value--><!-- /ko--></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="pkp-btns-holder">
+            <a class="pkp-btn pkp-btn_back" href="#" data-bind="click: ClickBack">Назад</a>
+            <!-- ko if: showRefresh -->
+            <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickRefresh">Обновить</button>
+            <!-- /ko -->
+        </div>
+
+        <div class="pkp-footer">
+            <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
+        </div>
+    </div>
+</script>

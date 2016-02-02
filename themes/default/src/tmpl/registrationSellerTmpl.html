@@ -1,0 +1,236 @@
+
+<script id="registrationSellerFromStep1Tmpl" type="text/html">
+  <!-- version 1.0 -->
+  <div class="h1-with-progress-bar seller">
+    <canvas id="progressCircle" width="160" height="160">
+      <p>Ваш браузер не поддерживает технологию canvas</p>
+    </canvas>
+    <h1>Регистрация продавца</h1>
+  </div>
+  <form action="">
+    <div id="registerShopWizard" class="b-wizard">
+      <ul class="b-wizard__steps">
+        <li><a href="#step-1" class="selected">
+            <label class="b-wizard__step-num">1</label></a></li>
+        <li><a href="#step-2" class="disabled">
+            <label class="b-wizard__step-num">2</label></a></li>
+        <li><a href="#step-3" class="disabled">
+            <label class="b-wizard__step-num">3</label></a></li>
+      </ul>
+      <div id="step-1">
+        <h2 class="b-wizard__step-title">Данные аккаунта</h2>
+        <p>Укажите название магазина, почту и телефон</p>
+        <div class="b-wizard__step-content">
+          <div class="input-holder">
+            <div class="error-msg-wrapper">
+              <!-- ko if: errorNameSeller -->
+              <div class="error__message">
+                <p data-bind="text: errorNameSeller"></p>
+              </div><!-- /ko -->
+              <input type="text" name="nickname" value="" placeholder="Название магазина" data-bind="value: nameSeller" class="block-input"/>
+            </div>
+          </div>
+          <div class="input-holder">
+            <div rel="tooltip" title="Ваш почтовый ящик для связи с покупателями и получения уведомлений о заказах" class="tooltip__trigger">?</div>
+            <div class="error-msg-wrapper">
+              <!-- ko if: errorEmail -->
+              <div class="error__message">
+                <p data-bind="html: errorEmail"></p>
+              </div><!-- /ko -->
+              <input type="email" name="email" value="" placeholder="Ваш e-mail" data-bind="value: email" class="block-input"/>
+            </div>
+          </div>
+          <div class="input-holder">
+            <div rel="tooltip" title="Номер мобильного телефон для SMS уведомлений, в сети не публикуется" class="tooltip__trigger">?</div>
+            <div class="error-msg-wrapper">
+              <!-- ko if: errorPhone -->
+              <div class="error__message">
+                <p data-bind="html: errorPhone"></p>
+              </div><!-- /ko -->
+              <input type="tel" name="phone" value="" placeholder="Номер телефона" data-bind="value: phone, attr: {id : cssPhone}" class="block-input"/>
+            </div>
+          </div>
+          <div style="padding-top: 13px;" class="input-holder">
+            <div class="error-msg-wrapper">
+              <!-- ko if: errorIsChecked -->
+              <div class="error__message">
+                <p data-bind="text: errorIsChecked"></p>
+              </div><!-- /ko -->
+              <input id="iagree" name="iagree" type="checkbox" data-bind="checked: isChecked" class="checkbox"/>
+              <label for="iagree" class="block-label b-small-text" style="clear: both">Я принимаю условия <a href="javascript:void(0);" target="_blank" data-bind="attr:{href: agreement}">пользовательского соглашения</a>, <br/><a href="javascript:void(0);" target="_blank" data-bind="attr:{href: police}">правил конфиденциальности</a> и <a href="javascript:void(0);" target="_blank" data-bind="attr:{href: refund}">политики возврата платежей</a></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="b-wizard__actions"><a href="javascript:void(0);" data-bind="click: SubmitForm" class="b-wizard__action btn-next-step">Продолжить</a></div>
+    </div>
+  </form>
+</script>
+<script id="registrationSellerFromStep2Tmpl" type="text/html">
+  <!-- version 1.0 -->
+  <div class="h1-with-progress-bar seller">
+    <canvas id="progressCircle" width="160" height="160">
+      <p>Ваш браузер не поддерживает технологию canvas</p>
+    </canvas>
+    <h1>Регистрация продавца</h1>
+  </div>
+  <form action="">
+    <div id="registerShopWizard" class="b-wizard">
+      <ul class="b-wizard__steps">
+        <li><a href="#step-1" class="done">
+            <label class="b-wizard__step-num">1</label></a></li>
+        <li><a href="#step-2" class="selected">
+            <label class="b-wizard__step-num">2</label></a></li>
+        <li><a href="#step-3" class="disabled">
+            <label class="b-wizard__step-num">3</label></a></li>
+      </ul>
+      <div id="step-2">
+        <h2 class="b-wizard__step-title">Активация магазина</h2>
+        <p>Укажите код, высланный на почтовый адрес или телефон</p>
+        <div class="b-wizard__step-content">
+            <!-- ko if: errorConfirmLater -->
+                <p data-bind="text: errorConfirmLater" class="error_form"></p>
+            <!-- /ko -->
+            <!-- ko ifnot: mailConfirmLater -->
+              <div class="input-holder">
+                <div style="top:3px" rel="tooltip" title="Код, высланный на почтовый адрес" class="tooltip__trigger">?</div>
+                <div class="error-msg-wrapper">
+                  <!-- ko if: errorEmailConfirm -->
+                    <div class="error__message">
+                      <p data-bind="text: errorEmailConfirm"></p>
+                    </div>
+                  <!-- /ko -->
+                  <input type="text" name="code" value="" placeholder="Ваш e-mail код" data-bind="value: mailToken" class="block-input"/>
+                  <!-- ko ifnot: phoneConfirmLater -->
+                  <input id="skip-email" name="skip-email" type="checkbox" checked="" data-bind="checked: mailConfirmLater" class="checkbox"/>
+                  <label for="skip-email" class="block-label b-small-text">Подтвердить почтовый ящик позднее</label>
+                  <!-- /ko -->
+                  <!-- ko if: mailIsConfirm -->
+                    <div class="b-status b-status--done">E-mail подтверждён</div>
+                  <!-- /ko -->
+                </div>
+              </div>
+            <!-- /ko -->
+
+            <!-- ko ifnot: isEmptyPhone -->
+            <!-- ko ifnot: phoneConfirmLater -->
+              <div class="input-holder">
+                <div style="top:3px" rel="tooltip" title="Код, высланный в SMS" class="tooltip__trigger">?</div>
+                <div class="error-msg-wrapper">
+                    <!-- ko if: errorPhoneConfirm -->
+                      <div class="error__message">
+                        <p data-bind="text: errorPhoneConfirm"></p>
+                      </div>
+                    <!-- /ko -->
+                  <input type="text" name="code" value="" placeholder="Ваш SMS код" data-bind="value: phoneToken" class="block-input"/>
+                    <!-- ko ifnot: mailConfirmLater -->
+                  <input id="skip-phone" name="skip-email" type="checkbox" checked="" data-bind="checked: phoneConfirmLater" class="checkbox"/>
+                  <label for="skip-phone" class="block-label b-small-text">Подтвердить телефон позднее</label>
+                    <!-- /ko -->
+                  <!-- ko if: phoneIsConfirm -->
+                    <div class="b-status b-status--done">Телефон подтверждён</div>
+                  <!-- /ko -->
+                </div>
+              </div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+      </div>
+      <div class="b-wizard__actions"><a href="javascript:void(0);" data-bind="click: Back" class="b-wizard__action btn-prev-step">Назад</a><a href="javascript:void(0);" data-bind="click: SubmitForm" class="b-wizard__action btn-next-step">Продолжить</a></div>
+    </div>
+  </form>
+</script>
+<script id="registrationSellerFromStep3Tmpl" type="text/html">
+  <!-- version 1.0 -->
+  <div class="h1-with-progress-bar seller">
+    <canvas id="progressCircle" width="160" height="160">
+      <p>Ваш браузер не поддерживает технологию canvas</p>
+    </canvas>
+    <h1>Регистрация продавца</h1>
+  </div>
+  <form action="">
+    <div id="registerShopWizard" class="b-wizard">
+      <ul class="b-wizard__steps">
+        <li><a href="#step-1" class="done">
+            <label class="b-wizard__step-num">1</label></a></li>
+        <li><a href="#step-2" class="done">
+            <label class="b-wizard__step-num">2</label></a></li>
+        <li><a href="#step-3" class="selected">
+            <label class="b-wizard__step-num">3</label></a></li>
+      </ul>
+      <div id="step-3">
+        <h2 class="b-wizard__step-title">Завершение регистрации</h2>
+        <div class="b-wizard__step-content">
+          <div id="clienttype" class="input-holder">
+              <!-- ko if: errorTypeSeller -->
+            <div class="error__message" style="float: none">
+              <p style="max-width: 100%" data-bind="text: errorTypeSeller"></p>
+            </div>
+              <!-- /ko -->
+            <div>
+              <input id="clienttype-private" type="radio" name="clienttype" value="person" data-bind="checked: typeSeller" class="inline"/>
+              <label for="clienttype-private">Частное лицо</label>
+              <input id="clienttype-corporate" type="radio" name="clienttype" value="company" data-bind="checked: typeSeller" class="inline"/>
+              <label for="clienttype-corporate">Компания</label>
+            </div>
+          </div>
+            <!-- ko ifnot: confirmLater -->
+          <div class="input-holder">
+            <div class="error-msg-wrapper">
+                <!-- ko if: errorSite -->
+              <div class="error__message">
+                <p data-bind="text: errorSite"></p>
+              </div>
+                <!-- /ko -->
+              <input type="text" name="family" value="" placeholder="Адрес сайта (если есть)" data-bind="value: site" class="block-input"/>
+            </div>
+          </div>
+          <div class="input-holder">
+            <div class="error-msg-wrapper">
+                <!-- ko if: errorInvite -->
+              <div class="error__message">
+                <p data-bind="text: errorInvite"></p>
+              </div>
+                <!-- /ko -->
+              <input type="text" name="code" value="" placeholder="Код приглашения" data-bind="value: invite" class="block-input"/>
+            </div>
+          </div>
+            <!-- /ko -->
+          <div style="padding-top: 13px;" class="input-holder">
+            <input id="skip_personal" name="skip_personal" type="checkbox" data-bind="checked: confirmLater" class="checkbox"/>
+            <label for="skip_personal" class="block-label b-small-text">Указать позже</label>
+          </div>
+        </div>
+      </div>
+      <div class="b-wizard__actions"><a href="javascript:void(0);" data-bind="click: Back" class="b-wizard__action btn-prev-step">Назад</a><a href="javascript:void(0);" data-bind="click: SubmitForm" class="b-wizard__action btn-next-step">Продолжить</a></div>
+    </div>
+  </form>
+</script>
+<script id="registrationSellerFromStep4Tmpl" type="text/html">
+  <!-- version 1.0 -->
+  <div class="h1-with-progress-bar seller">
+    <canvas id="progressCircle" width="160" height="160">
+      <p>Ваш браузер не поддерживает технологию canvas</p>
+    </canvas>
+    <h1>Регистрация продавца</h1>
+  </div>
+  <form action="">
+    <div id="registerShopWizard" class="b-wizard">
+      <ul class="b-wizard__steps">
+        <li><a href="#step-1" class="done">
+            <label class="b-wizard__step-num">1</label></a></li>
+        <li><a href="#step-2" class="done">
+            <label class="b-wizard__step-num">2</label></a></li>
+        <li><a href="#step-3" class="done">
+            <label class="b-wizard__step-num">3</label></a></li>
+      </ul>
+      <div id="step-4">
+        <h2 class="b-wizard__step-title">Завершение регистрации</h2>
+        <div class="b-wizard__step-content">
+          <p>Вы успешно зарегистрировались в качестве продавца, на вашу почту высланы пароли доступа, для управления своим магазином зайдите в личный кабинет</p>
+        </div>
+      </div>
+      <div class="b-wizard__actions"><a href="https://seller.pokupo.ru/login" class="b-wizard__action btn-next-step">Настроить магазин</a></div>
+    </div>
+  </form>
+</script>
