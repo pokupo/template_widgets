@@ -76,7 +76,7 @@
     </div>
     <div class="b-order-item__qty">
       <div class="limits-wrapper">
-        <!-- ko ifnot: showSelectionCount() -->
+        <!-- ko if: showSelectionCount() -->
         <p class="b-catalog-item__limits">На складе: <span data-bind="text: countReserv" class="value"></span></p>
         <div class="b-increment-input">
           <span data-bind="click: ClickMinus" class="b-increment-input__darr"></span>
@@ -85,7 +85,7 @@
           <span data-bind="click: ClickPlus" class="b-increment-input__uarr"></span>
         </div>
         <!-- /ko -->
-        <!-- ko if: showSelectionCount() -->
+        <!-- ko ifnot: showSelectionCount() -->
         <div class="b-order-item__qty">
           <span class="b-increment-group">
           <span data-bind="text: ordered" class="b-increment-group__qty">1</span>

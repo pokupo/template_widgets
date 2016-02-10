@@ -371,7 +371,7 @@ PKP.UI = {
 
 			var submenu = PKP.$menu.find('.submenu.active');
 
-			if($this.is('.with-submenu')) {
+			//if($this.is('.with-submenu')) {
 				submenu.removeClass('active');
 
 				if(PKP.$menu.is('.menu--opened')){
@@ -380,8 +380,11 @@ PKP.UI = {
 
 				$this.children('a').addClass('bordered').addClass("maintainHover");
 				$this.children('.submenu').addClass('active');
-				$('.submenu-bg').addClass('active');
-			}
+				if(!$this.is('.with-submenu'))
+					$('.submenu-bg').removeClass('active');
+				else
+					$('.submenu-bg').addClass('active');
+			//}
 		},
 
 		deactivateSubmenu: function(row) {
@@ -409,6 +412,7 @@ PKP.UI = {
 				if(PKP.$menu.find('.submenu.current').length > 0) {
 					PKP.$menu.find('.submenu.active').removeClass('active').siblings('a.bordered').removeClass();
 					PKP.$menu.find('.submenu.current').removeClass('current').addClass('active');
+					$('.submenu-bg').addClass('active');
 				}
 			} else {
 				PKP.$menu.find('.submenu').removeClass('active').siblings('a.bordered').removeClass();
