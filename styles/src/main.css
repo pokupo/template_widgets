@@ -5613,8 +5613,9 @@ h1 + .b-inline-actions {
 	max-width: 624px; /* min-height 670px */
 	z-index: 16;
 	position: relative;
-	height: 68.5%;
+	height: 91.5%;
 	overflow: auto;
+	max-height: 659px;
 }
 
 .popup header {
