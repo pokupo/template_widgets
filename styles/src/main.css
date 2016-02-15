@@ -4223,6 +4223,8 @@ section.partners {
 	vertical-align: middle;
 	display: inline-block;
 	max-width: 100%;
+	width: 100%;
+	height: auto;
 }
 
 .b-partner__name {
@@ -5611,7 +5613,7 @@ h1 + .b-inline-actions {
 	max-width: 624px; /* min-height 670px */
 	z-index: 16;
 	position: relative;
-	height: 90%;
+	height: 68.5%;
 	overflow: auto;
 }
 
@@ -10421,6 +10423,7 @@ p.error_form {
 
 .h1-with-progress-bar.seller {
 	text-align: center;
+	margin-top: 90px;
 }
 
 .h1-with-progress-bar.seller h1 {
