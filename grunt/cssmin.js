@@ -16,7 +16,12 @@ module.exports = {
             'styles/payment.css': ['styles/src/payment.css'],
             'styles/payment_company.css': ['styles/src/payment_company.css'],
             'styles/payment_company_white.css': ['styles/src/payment_company_white.css'],
-            'styles/payment_dark.css': ['styles/src/payment_dark.css']
+            'styles/payment_dark.css': ['styles/src/payment_dark.css'],
+
+            'themes/payment/theme.css': ['themes/payment/src/theme.css'],
+            'themes/payment_company/theme.css': ['themes/payment_company/src/theme.css'],
+            'themes/payment_company_white/theme.css': ['themes/payment_company_white/src/theme.css'],
+            'themes/payment_dark/theme.css': ['themes/payment_dark/src/theme.css']
         }
     }
 }

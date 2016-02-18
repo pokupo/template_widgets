@@ -2,12 +2,17 @@ default:
   description: 'Default (production) build'
   tasks:
     - prod
+
+clear:
+  description: "Clear directories"
+  tasks:
+    - 'concurrent:clear'
+
 dev:
   description: 'Development build'
   tasks:
     - 'concurrent:devFirst'
     - 'concurrent:devSecond'
-    - 'concurrent:devTherd'
 img:
   description: 'Image tasks'
   tasks:
