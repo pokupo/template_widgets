@@ -1,75 +1,81 @@
-
-<script id="loaderTmpl" type="text/html">
-	<div class="main-loader">
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+		<title>Загрузчик</title>
+</head>
+<body>
+<div class="main-loader">
     <div class="loader">
-	<div class="loader-pic" style="position: relative; width: 300px; height: 260px;">
-	<style>
-	.main-loader{z-index: 999; backgound: rgba(50,50,50,0.3);}
-	.loader{position: relative; width: 300px; height: 300px; margin: 15% auto 0 auto; z-index: 1000; overflow: hidden; border-radius: 6px;
-		-webkit-box-shadow: 0px 1px 20px 0px rgba(50, 50, 50, 0.59);
-		-moz-box-shadow:    0px 1px 20px 0px rgba(50, 50, 50, 0.59);
-	box-shadow:         0px 1px 20px 0px rgba(50, 50, 50, 0.59);}
-	@keyframes hide-all { 0% { opacity: 1; } 100% { opacity: 0; } }
-	@keyframes hide-fall { 0% { opacity: 0; } 100% { opacity: 0; } }                
-	@keyframes show-all { 0% { opacity: 0; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-	@keyframes show-all-stat { 0% {opacity: 0;} 10% { opacity: 1; } 100% { opacity: 1;} }
-	
-	@keyframes cart-show { 0% { opacity: 0;} 10% { opacity: 1; } 100% { opacity: 1;} }
-	@keyframes cart-down { 0% { transform: translateY(0); } 100% { transform: translateY(3px); } }
-	@keyframes cart-up { 0% { transform: translateY(3px); } 100% { transform: translateY(0); } }
-	
-	@keyframes weel-roll { 0% { transform: rotate(0turn); } 100% { transform: rotate(1turn); } }
-	
-	@keyframes pil-run { 0% { transform: translateX(0px); } 100% { transform: translateX(-12px); } }
-	
-	@keyframes speed-in-run { 0% { transform: translateX(0px); } 100% { transform: translateX(-170px); } }
-	
-	@keyframes bear-fall { 0% {transform: translate(-16px,-153px);} 100% {transform: translate(0px,0px);} }                
-	
-	@keyframes gym-fall { 0% {transform: translate(-6px,-155px);} 100% {transform: translate(0px,0px);} }                
-	
-	@keyframes bone-fall { 0% {transform: translate(-6px,-124px);} 100% {transform: translate(0px,0px);} }                
-	
-	@keyframes tea-fall { 0% {transform: translate(0px,-126px);} 100% {transform: translate(0px,0px);} }                
-	
-	@keyframes mobile-fall { 0% {transform: translate(0px,-102px);} 100% {transform: translate(0px,0px);} }                
-	
-	@keyframes gift-fall { 0% {transform: translate(0px,-93px);} 100% {transform: translate(0px,0px);} }                
-	
-	@keyframes money-fall { 0% {transform: translate(0px,-81px);} 100% {transform: translate(0px,0px);} }                
-	
-	.loader-pic div{position: absolute; background: transparent;}
-	#cart-d{animation: show-all-stat 0.6s ease, cart-down 0.45s linear 0.6s infinite, cart-up 0.75s linear 1s infinite; width: 140px; height: 81px; left: 106px; top: 130px; }
-	
-	#weel1-d{animation: show-all-stat 0.6s ease, weel-roll 0.8s linear 0.6s infinite; -webkit-animation: show-all-stat 0.6s ease, weel-roll 0.8s linear 0.6s infinite;width: 25.6px; height: 23px; left: 170px; top: 215px; }
-	#weel2-d{animation: show-all-stat 0.6s ease, weel-roll 0.8s linear 0.6s infinite; width: 25.6px; height: 23px; left: 200px; top: 215px; }
-	
-	#pil-d{animation: show-all-stat 0.6s ease, hide-all 0.6s linear 0.3s infinite, pil-run 0.6s linear 0.3s infinite; width: 31.3px; height: 16.9px; left: 140px; top: 217px; }
-	
-	#speed-in-d{animation: show-all-stat 0.6s ease, speed-in-run 0.8s linear 0.8s infinite; width: 68.8px; height: 61.8px; left: 70px; top: 102px; }
-	
-	#speed-out-d{animation: show-all-stat 0.6s ease,speed-in-run 0.8s linear 0.5s infinite; width: 36.6px; height: 118.1px; left: 60px; top: 100px; }                
-	
-	#bear-d{animation: show-all 0.3s ease, bear-fall 0.6s linear, cart-down 0.45s linear 0.6s infinite, cart-up 0.75s linear 1s infinite; width: 46.1px; height: 48.8px; left: 146px; top: 153px;}
-	
-	#gym-d{animation: hide-fall 0.6s linear, show-all 0.3s ease 0.6s, gym-fall 0.6s linear 0.6s, cart-down 0.45s linear 1.2s infinite, cart-up 0.75s linear 1.6s infinite; width: 37.5px; height: 38px; left: 186px; top:155px;}
-	
-	#bone-d{animation: hide-fall 1.2s linear,show-all 0.3s ease 1.2s, bone-fall 0.6s linear 1.2s, cart-down 0.45s linear 1.8s infinite, cart-up 0.75s linear 2.2s infinite; width: 25.3px; height: 37.3px; left: 206px; top: 124px; }                
-	
-	#tea-d{animation: hide-fall 1.8s linear,show-all 0.3s ease 1.8s, tea-fall 0.6s linear 1.8s, cart-down 0.45s linear 2.4s infinite, cart-up 0.75s linear 2.8s infinite; width: 46.8px; height: 39.2px; left: 170px; top: 126px; }                
-	
-	#mobile-d{animation: hide-fall 2.4s linear, show-all 0.3s ease 2.4s, mobile-fall 0.6s linear 2.4s, cart-down 0.45s linear 3s infinite, cart-up 0.75s linear 3.4s infinite; width: 42.9px; height: 37.6px; left: 128px; top: 102px;}
-	
-	#gift-d{animation: hide-fall 3s linear,show-all 0.3s ease 3s, gift-fall 0.6s linear 3s, cart-down 0.45s linear 3.6s infinite, cart-up 0.75s linear 4s infinite; width: 59px; height: 57.7px; left: 186px; top: 93px; }                
-	
-	#money-d{animation: hide-fall 3.6s linear,show-all 0.3s ease 3.6s, money-fall 0.6s linear 3.6s, cart-down 0.45s linear 4.2s infinite, cart-up 0.75s linear 4.6s infinite; width: 32.7px; height: 30.4px; left: 146px; top: 81px; }
-	
-	.progress-bar{position: relative; width: 300px; height: 40px; }
-	.progress{background: rgb(0,165,81); border-radius: 0 0 6px 6px;}
-	.procent__wrap{padding-top: 10px; width:100px; margin: 0 auto; color: #fff; text-align: center;}
-	
-	
-</style>           
+        <div class="loader-pic" style="position: relative; width: 300px; height: 260px;">
+       	    <style>
+				.main-loader{z-index: 999; backgound: rgba(50,50,50,0.3);}
+                .loader{position: relative; width: 300px; height: 300px; margin: 15% auto 0 auto; z-index: 1000; overflow: hidden; border-radius: 6px;
+				-webkit-box-shadow: 0px 1px 20px 0px rgba(50, 50, 50, 0.59);
+				-moz-box-shadow:    0px 1px 20px 0px rgba(50, 50, 50, 0.59);
+				box-shadow:         0px 1px 20px 0px rgba(50, 50, 50, 0.59);}
+                @keyframes hide-all { 0% { opacity: 1; } 100% { opacity: 0; } }
+                @keyframes hide-fall { 0% { opacity: 0; } 100% { opacity: 0; } }                
+                @keyframes show-all { 0% { opacity: 0; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+                @keyframes show-all-stat { 0% {opacity: 0;} 10% { opacity: 1; } 100% { opacity: 1;} }
+                
+                @keyframes cart-show { 0% { opacity: 0;} 10% { opacity: 1; } 100% { opacity: 1;} }
+                @keyframes cart-down { 0% { transform: translateY(0); } 100% { transform: translateY(3px); } }
+                @keyframes cart-up { 0% { transform: translateY(3px); } 100% { transform: translateY(0); } }
+                
+                @keyframes weel-roll { 0% { transform: rotate(0turn); } 100% { transform: rotate(1turn); } }
+                
+                @keyframes pil-run { 0% { transform: translateX(0px); } 100% { transform: translateX(-12px); } }
+                
+                @keyframes speed-in-run { 0% { transform: translateX(0px); } 100% { transform: translateX(-170px); } }
+                                
+                @keyframes bear-fall { 0% {transform: translate(-16px,-153px);} 100% {transform: translate(0px,0px);} }                
+
+                @keyframes gym-fall { 0% {transform: translate(-6px,-155px);} 100% {transform: translate(0px,0px);} }                
+                
+                @keyframes bone-fall { 0% {transform: translate(-6px,-124px);} 100% {transform: translate(0px,0px);} }                
+                
+                @keyframes tea-fall { 0% {transform: translate(0px,-126px);} 100% {transform: translate(0px,0px);} }                
+                
+                @keyframes mobile-fall { 0% {transform: translate(0px,-102px);} 100% {transform: translate(0px,0px);} }                
+
+                @keyframes gift-fall { 0% {transform: translate(0px,-93px);} 100% {transform: translate(0px,0px);} }                
+
+                @keyframes money-fall { 0% {transform: translate(0px,-81px);} 100% {transform: translate(0px,0px);} }                
+
+                .loader-pic div{position: absolute; background: transparent;}
+                #cart-d{animation: show-all-stat 0.6s ease, cart-down 0.45s linear 0.6s infinite, cart-up 0.75s linear 1s infinite; width: 140px; height: 81px; left: 106px; top: 130px; }
+
+                #weel1-d{animation: show-all-stat 0.6s ease, weel-roll 0.8s linear 0.6s infinite; width: 25.6px; height: 23px; left: 170px; top: 215px; }
+                #weel2-d{animation: show-all-stat 0.6s ease, weel-roll 0.8s linear 0.6s infinite; width: 25.6px; height: 23px; left: 200px; top: 215px; }
+                
+                #pil-d{animation: show-all-stat 0.6s ease, hide-all 0.6s linear 0.3s infinite, pil-run 0.6s linear 0.3s infinite; width: 31.3px; height: 16.9px; left: 140px; top: 217px; }
+                
+                #speed-in-d{animation: show-all-stat 0.6s ease, speed-in-run 0.8s linear 0.8s infinite; width: 68.8px; height: 61.8px; left: 70px; top: 102px; }
+                
+                #speed-out-d{animation: show-all-stat 0.6s ease,speed-in-run 0.8s linear 0.5s infinite; width: 36.6px; height: 118.1px; left: 60px; top: 100px; }                
+                
+                #bear-d{animation: show-all 0.3s ease, bear-fall 0.6s linear, cart-down 0.45s linear 0.6s infinite, cart-up 0.75s linear 1s infinite; width: 46.1px; height: 48.8px; left: 146px; top: 153px;}
+                
+                #gym-d{animation: hide-fall 0.6s linear, show-all 0.3s ease 0.6s, gym-fall 0.6s linear 0.6s, cart-down 0.45s linear 1.2s infinite, cart-up 0.75s linear 1.6s infinite; width: 37.5px; height: 38px; left: 186px; top:155px;}
+
+                #bone-d{animation: hide-fall 1.2s linear,show-all 0.3s ease 1.2s, bone-fall 0.6s linear 1.2s, cart-down 0.45s linear 1.8s infinite, cart-up 0.75s linear 2.2s infinite; width: 25.3px; height: 37.3px; left: 206px; top: 124px; }                
+ 
+                #tea-d{animation: hide-fall 1.8s linear,show-all 0.3s ease 1.8s, tea-fall 0.6s linear 1.8s, cart-down 0.45s linear 2.4s infinite, cart-up 0.75s linear 2.8s infinite; width: 46.8px; height: 39.2px; left: 170px; top: 126px; }                
+                
+                #mobile-d{animation: hide-fall 2.4s linear, show-all 0.3s ease 2.4s, mobile-fall 0.6s linear 2.4s, cart-down 0.45s linear 3s infinite, cart-up 0.75s linear 3.4s infinite; width: 42.9px; height: 37.6px; left: 128px; top: 102px;}
+ 
+                #gift-d{animation: hide-fall 3s linear,show-all 0.3s ease 3s, gift-fall 0.6s linear 3s, cart-down 0.45s linear 3.6s infinite, cart-up 0.75s linear 4s infinite; width: 59px; height: 57.7px; left: 186px; top: 93px; }                
+                
+                #money-d{animation: hide-fall 3.6s linear,show-all 0.3s ease 3.6s, money-fall 0.6s linear 3.6s, cart-down 0.45s linear 4.2s infinite, cart-up 0.75s linear 4.6s infinite; width: 32.7px; height: 30.4px; left: 146px; top: 81px; }
+				
+				.progress-bar{position: relative; width: 300px; height: 40px; background: rgb(0,165,81); border-radius: 0 0 6px 6px;}
+				.progress{text-align: center;}
+				.procent__wrap{padding-top: 10px; width:100px; margin: 0 auto; color: #fff; text-align: center;}
+				
+               
+			</style>           
             <div id="bear-d">
                 <svg>
                     <path id="bear"
@@ -349,4 +355,5 @@
         </div>        
     </div>
 </div>	
-</script>
+</body>
+</html>
