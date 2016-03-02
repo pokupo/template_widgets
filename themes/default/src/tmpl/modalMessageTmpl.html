@@ -71,3 +71,60 @@
         </div>
     </div>
 </script>
+
+<script id="modalMessageTimeoutErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-error">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="pkp-payment-error-img-wrap">
+                        <img src="https://pokupo.ru/themes/default/images/payment/error.png" alt="">
+                    </div>
+                    <br/>
+                    <p>Вау, кажется, вы нашли очень интересную ошибку в работе нашего магазина. Пожалуйста, нажмите сочетание клавиш Ctrl +F5 и если ошибка повторится, сообщите о ней в <a href="https://help.pokupo.ru/index.php?a=add" target="_blank">службу поддержки</a>.</p>
+                    <div class="b-modal-info__actions">
+                        <!-- ko if: showBack() -->
+                        <button class="btn btn-sm btn-grey close-modal" type="button" data-bind="click: Click.Back">Назад</button>
+                        <!-- /ko -->
+                        <button class="btn btn-sm" type="button" data-bind="click: Click.ToHomepage">На главную</button>
+                        <!-- ko if: showCabinet() -->
+                        <button class="btn btn-sm btn-grey" type="button" data-bind="click: Click.ToCabinet">Перейти в кабинет</button>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageFatalErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-error">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="pkp-payment-error-img-wrap">
+                        <img src="https://pokupo.ru/themes/default/images/payment/error.png" alt="">
+                    </div>
+                    <br/>
+                    <p data-bind="text: message"></p>
+                    <div class="b-modal-info__actions">
+                        <!-- ko if: showBack() -->
+                        <button class="btn btn-sm btn-grey close-modal" type="button" data-bind="click: Click.Back">Назад</button>
+                        <!-- /ko -->
+                        <button class="btn btn-sm" type="button" data-bind="click: Click.ToHomepage">На главную</button>
+                        <!-- ko if: showCabinet() -->
+                        <button class="btn btn-sm btn-grey" type="button" data-bind="click: Click.ToCabinet">Перейти в кабинет</button>
+                        <!-- /ko -->
+                        <a href="https://help.pokupo.ru/index.php?a=add" target="_blank" class="btn btn-sm btn-grey">Служба поддержки</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
