@@ -622,7 +622,7 @@ body {
 }
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__image img{
   position: relative;
-  top: -20px;
+  top: 0;
 }
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__images{
   vertical-align: middle;
