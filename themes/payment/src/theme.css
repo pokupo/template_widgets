@@ -623,7 +623,7 @@
 }
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__image img{
   position: relative;
-  top: 0;
+  top: 0px;
 }
 
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__images{
