@@ -623,19 +623,20 @@
 }
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__image img{
   position: relative;
-  top: 0px;
+  top: 0;
 }
 
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__images{
   vertical-align: middle;
 }
 
-.pkp_html .pkp_body #pkp-container .pkp-payment-method__images img{
+.pkp_html .pkp_body #pkp-container .pkp-payment-method__images img,
+.pkp_html .pkp_body #pkp-container .pkp-payment-method__images span{
   position: relative;
   display:inline-block;
   margin: 0 7px 20px 7px;
   vertical-align: middle;
-  top:0px!important;
+  top:0;
 }
 
 .pkp_html .pkp_body #pkp-container .pkp-payment-method__info {
@@ -1211,3 +1212,26 @@
   text-align: center;
 }
 
+/* Payments icons */
+.pkp-sprites{ background:url("../../../images/payment/sprites.png") top left no-repeat; }
+#pkp_visa-mdm{ width:146px; height:84px; background-position:-10px -10px; }
+#pkp_visa-payu{ width:157px; height:84px; background-position:-10px -104px; }
+#pkp_tel{ width:47px; height:82px; background-position:-10px -198px; }
+#pkp_tablet{ width:36px; height:39px; background-position:-67px -198px; }
+#pkp_check{ width:27px; height:39px; background-position:-113px -198px; }
+#pkp_tel-small{ width:23px; height:39px; background-position:-10px -290px; }
+#pkp_emoney{ width:39px; height:39px; background-position:-43px -290px; }
+#pkp_comp{ width:39px; height:38px; background-position:-92px -290px; }
+#pkp_comepay{ width:39px; height:35px; background-position:-10px -339px; }
+#pkp_z-payment{ width:30px; height:30px; background-position:-59px -339px; }
+#pkp_googlead{ width:50px; height:28px; background-position:-99px -339px; }
+#pkp_pochta{ width:59px; height:28px; background-position:-10px -384px; }
+#pkp_card{ width:41px; height:26px; background-position:-79px -384px; }
+#pkp_visa-q{ width:70px; height:26px; background-position:-10px -422px; }
+#pkp_rapida{ width:76px; height:21px; background-position:-90px -422px; }
+#pkp_visa{ width:69px; height:19px; background-position:-10px -458px; }
+#pkp_intellect{ width:73px; height:18px; background-position:-89px -458px; }
+#pkp_yandex{ width:70px; height:18px; background-position:-10px -487px; }
+#pkp_sber{ width:62px; height:18px; background-position:-90px -487px; }
+#pkp_tele2{ width:36px; height:14px; background-position:-130px -384px; }
+#pkp_bitcoin{ width:70px; height:14px; background-position:-10px -515px; }
